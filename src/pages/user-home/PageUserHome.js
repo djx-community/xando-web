@@ -11,7 +11,7 @@ function PageUserHome() {
     });
     return (
         <div>
-            <AppTitle />
+            <AppTitle title={'X &amp; O'} />
             <UserProfile left={false} edit={true} opponent={false} userName={profile && profile.username} userId={profile && profile.userId} />
             <MainMenu />
             <Footer />
