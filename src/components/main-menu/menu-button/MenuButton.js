@@ -18,8 +18,8 @@ function MenuButton({ position, name, path, hint }) {
     }
     return (
         <div className='m-5'>
-            <button className={`bg-sky-900 hover:bg-sky-800 text-white text-3xl 
-            shadow-xl shadow-blue-800 h-15 w-30 hover:h-20 hover:w-80 font-bold p-4 px-6
+            <button className={`bg-sky-900 hover:bg-sky-800 text-white text-xl md:text-3xl 
+            shadow-xl shadow-blue-800 h-15 w-30 md:w-30 hover:h-20 hover:w-56 md:hover:w-80 font-bold p-4 px-6
             ${pos} border-slate-500 hover:border-blue-500 rounded`} 
             
             onClick={() => handleButtonClick(path)}>
