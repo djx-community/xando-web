@@ -10,7 +10,7 @@ function UserHome() {
     return (
         <div>
             <AppTitle />
-            <UserProfile edit={true} userName={profile && profile.username} userId={profile && profile.userId} />
+            <UserProfile left={false} edit={true} opponent={false} userName={profile && profile.username} userId={profile && profile.userId} />
         </div>
     )
 }
