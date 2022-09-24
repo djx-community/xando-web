@@ -1,14 +1,14 @@
 table {
     border-collapse: separate;
-    border: solid black 1px;
+    border: solid white 1.5px;
     border-radius: 6px;
 }
 
 td,
 th {
     border-color: transparent;
-    border-left: solid black 1px;
-    border-top: solid black 1px;
+    border-left: solid white 1.5px;
+    border-top: solid white 1.5px;
 }
 
 th {
