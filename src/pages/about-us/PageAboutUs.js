@@ -19,11 +19,11 @@ export default function PageAboutUs() {
     },
     {
       name: "Muhammed Ali",
-      url: "https://github.com/midlajc",
+      url: "https://github.com/ALIP703",
     },
     {
       name: "Abdul Samad MJ",
-      url: "https://github.com/midlajc",
+      url: "https://github.com/abdulsamadmj",
     },
     {
       name: "Mubashir Angathil",
