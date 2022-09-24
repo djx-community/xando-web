@@ -20,7 +20,7 @@ function ButtonCopyId({ id }) {
                         handleButtonClick()
                     } />
             </div>) : (
-            <button className="bg-sky-900 hover:bg-sky-800 text-white text-2xl 
+            <div className="m-5 bg-sky-900 hover:bg-sky-800 text-white text-center text-xl 
             shadow-xl shadow-blue-800 h-16 w-56 md:w-30 font-bold p-4 px-6
             border-t-4 border-slate-500 hover:border-blue-500 rounded"
                 onClick={() => {
@@ -28,7 +28,7 @@ function ButtonCopyId({ id }) {
                     setButtonClicked(true)
                 }}>
                 Copy ID
-            </button>
+            </div>
         )
     )
 }
