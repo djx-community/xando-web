@@ -1,10 +1,10 @@
 import React from 'react'
 
-function AppTitle() {
+function AppTitle({ title }) {
     return (
         <header>
             <h1 className="text-3xl font-bold text-center pt-3 font-sans">
-                X &amp; O
+                {title}
             </h1>
         </header>
     )
