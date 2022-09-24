@@ -629,18 +629,6 @@ video {
   width: 10rem;
 }
 
-.w-auto {
-  width: auto;
-}
-
-.w-80 {
-  width: 20rem;
-}
-
-.w-52 {
-  width: 13rem;
-}
-
 .flex-col {
   flex-direction: column;
 }
