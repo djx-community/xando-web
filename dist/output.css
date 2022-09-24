@@ -841,6 +841,11 @@ video {
   --tw-shadow: var(--tw-shadow-colored);
 }
 
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 .dark .dark\:bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
