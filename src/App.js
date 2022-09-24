@@ -5,8 +5,9 @@ import PageUserHome from "./pages/user-home/PageUserHome";
 import pages from "./constants/pages";
 import PagePlayWithFriend from "./pages/play-with-friend/PagePlayWithFriend";
 import PageAboutUs from "./pages/about-us/PageAboutUs";
-import { ToastContextProvider } from "./contexts/ToastContext";import PageExtras from './pages/extras/PageExtras';
-import PageHowToPlay from './pages/how-to-play/PageHowToPlay';
+import { ToastContextProvider } from "./contexts/ToastContext";
+import PageExtras from "./pages/extras/PageExtras";
+import PageHowToPlay from "./pages/how-to-play/PageHowToPlay";
 
 function App() {
   return (
@@ -20,8 +21,8 @@ function App() {
           />
           <Route path={pages.OFFLINE_GAME} element={<PageOfflineGame />} />
           <Route path={pages.EXTRAS} element={<PageExtras />} />
-        <Route path={pages.HOW_TO_PLAY} element={<PageHowToPlay />} />
-        <Route path={pages.ABOUT_US} element={<PageAboutUs />} />
+          <Route path={pages.HOW_TO_PLAY} element={<PageHowToPlay />} />
+          <Route path={pages.ABOUT_US} element={<PageAboutUs />} />
         </Routes>
       </div>
     </ToastContextProvider>
