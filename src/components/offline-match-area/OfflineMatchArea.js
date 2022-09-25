@@ -19,7 +19,7 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
         ]);
     const [countTurn, setCountTurn] = useState(0);
     useEffect(() => {
-        if (countTurn >= 5) {
+        if (countTurn >= 5 && countTurn < 9) {
             //start to check if there is a winner
             //check rows
             checkRows()
@@ -27,6 +27,12 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
             checkDiagonals()
         } else if (countTurn === 9) {
             alert('Draw');
+            setScores((prev) => {
+                return {
+                    userScore: prev.userScore +1,
+                    opponentScore: prev.opponentScore+1
+                }
+            })
             resetGame();
         }
     }, [countTurn]);
@@ -42,6 +48,7 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
             }
         }
     }
+    
     const checkColumns = async () => {
         for (let i = 0; i < 3; i++) {
             if (matrix[0][i].component === matrix[1][i].component && matrix[1][i].component === matrix[2][i].component) {
@@ -103,9 +110,10 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
                     { component: null, clicked: false },
                 ]
             ]);
+        setCountTurn(0)
     }
     return (
-        <section className="pt-3 flex justify-center align-middle">
+        <section className="pt-3 md:pt-16 flex justify-center align-middle">
             <div className="">
                 {
                     matrix.map((row, rowIndex) => {
@@ -113,8 +121,10 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
                             {
                                 row.map((cell, cellIndex) => {
                                     return (<button key={rowIndex + 'x' + cellIndex}
-                                        className={`m-1 w-20 h-20 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md 
-                                       ${!cell.clicked && 'hover:bg-gray-100 dark:hover:bg-gray-700'}  dark:bg-gray-800 dark:border-gray-700 text-xl`}
+                                        className={`md:w-28 w-20 md:h-28 h-20 block p-6 max-w-sm border-white
+                                       ${!cell.clicked && 'hover:bg-gray-100 dark:hover:bg-blue-800'}  ddark:bg-gradient-to-r from-slate-900 to-blue-900 text-3xl 
+                                       ${rowIndex === 0 && 'border-b-4'} ${rowIndex === 1 && 'border-y-4'} ${rowIndex === 2 && 'border-t-4'} 
+                                       ${cellIndex === 0 && 'border-r-4'} ${cellIndex === 1 && 'border-x-4'} ${cellIndex === 2 && 'border-l-4'}`}
                                         disabled={cell.clicked}
                                         onClick={() => {
                                             setMatrix((prevMatrix) => {
