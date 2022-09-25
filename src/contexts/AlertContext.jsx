@@ -3,22 +3,41 @@ const AlertContext = createContext();
 export default AlertContext;
 
 export function AlertContextProvider({ children }) {
-  const [alerts, setAlerts] = useState([]);
+  const [alert, setAlert] = useState({});
+  //   Callback function to set alert
+  const addAlert = useCallback(
+    (alert) => {
+      setAlert(alert);
+      if (alert.open) {
+        let element = document.getElementById("popup-modal");
+        element.classList.remove("hidden");
+        element.classList.add("flex");
+      }
+    },
+    [setAlert]
+  );
+  const closeAlert = () => {
+    let element = document.getElementById("popup-modal");
+    element.classList.remove("flex");
+    element.classList.add("hidden");
+  };
+  //   Accepts an alert object and sets it to the state
+  const handleAccept = () => {
+    closeAlert();
+    alert.action();
+  };
+
+  //   Closes the alert and performs the action
+  const handleDenied = () => {
+    alert.exit();
+    closeAlert();
+  };
   return (
-    <AlertContext.Provider value={alerts}>
+    <AlertContext.Provider value={addAlert}>
       {children}
-
-      <button
-        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-        data-modal-toggle="popup-modal"
-      >
-        Toggle modal
-      </button>
-
       <div
         id="popup-modal"
-        tabindex="-1"
+        tabindex="-2"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full justify-center items-center"
         aria-hidden="true"
       >
@@ -28,6 +47,7 @@ export function AlertContextProvider({ children }) {
               type="button"
               class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
               data-modal-toggle="popup-modal"
+              onClick={closeAlert}
             >
               <svg
                 aria-hidden="true"
@@ -42,7 +62,16 @@ export function AlertContextProvider({ children }) {
                   clip-rule="evenodd"
                 ></path>
               </svg>
-              <span class="sr-only">Close modal</span>
+              <span
+                class="sr-only"
+                onClick={() => {
+                  document
+                    .getElementById("popup-modal")
+                    .classList.add("hidden");
+                }}
+              >
+                Close modal
+              </span>
             </button>
             <div class="p-6 text-center">
               <svg
@@ -61,21 +90,25 @@ export function AlertContextProvider({ children }) {
                 ></path>
               </svg>
               <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                Are you sure you want to delete this product?
+                {alert.message
+                  ? alert.message
+                  : "Are you sure you want to do this action?"}
               </h3>
               <button
                 data-modal-toggle="popup-modal"
                 type="button"
                 class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                onClick={handleAccept}
               >
-                Yes, I'm sure
+                {alert.accept ? alert.accept : "Yes, I'm sure"}
               </button>
               <button
                 data-modal-toggle="popup-modal"
                 type="button"
                 class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                onClick={handleDenied}
               >
-                No, cancel
+                {alert.denied ? alert.denied : "No, cancel"}
               </button>
             </div>
           </div>
