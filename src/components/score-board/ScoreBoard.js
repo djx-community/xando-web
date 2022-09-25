@@ -14,8 +14,8 @@ function ScoreBoard({ userScore, opponentScore, bestOf }) {
                     </thead>
                     <tbody>
                         <tr>
-                            <td className=''>{userScore}</td>
                             <td className=''>{opponentScore}</td>
+                            <td className=''>{userScore}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -27,7 +27,7 @@ function PageOfflineGame() {
         userScore: 0,
         opponentScore: 0
       });
-    } else if (scores.opponentScore === bestOf) {
+    } else if (scores.opponentScore >= bestOf/2) {
       alert('You lose');
       setScores({
         userScore: 0,

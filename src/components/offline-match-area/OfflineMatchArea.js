@@ -35,21 +35,9 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
         for (let i = 0; i < 3; i++) {
             if (matrix[i][0].component === matrix[i][1].component && matrix[i][1].component === matrix[i][2].component) {
                 if (matrix[i][0].component === '1') {
-                    doAnimation({ c1: { row: i, col: 0 }, c2: { row: i, col: 1 }, c3: { row: i, col: 2 } }).then(() => {
-                        alert('X wins');
-                        setScores((prev) => {
-                            return { ...prev, userScore: prev.userScore + 1 }
-                        });
-                        resetGame();
-                    })
+                    singleGameWinner({ c1: { row: i, col: 0 }, c2: { row: i, col: 1 }, c3: { row: i, col: 2 }, component: '1' });
                 } else if (matrix[i][0].component === '0') {
-                    doAnimation({ c1: { row: i, col: 0 }, c2: { row: i, col: 1 }, c3: { row: i, col: 2 } }).then(() => {
-                        alert('O wins');
-                        setScores((prev) => {
-                            return { ...prev, opponentScore: prev.opponentScore + 1 }
-                        });
-                        resetGame()
-                    })
+                    singleGameWinner({ c1: { row: i, col: 0 }, c2: { row: i, col: 1 }, c3: { row: i, col: 2 }, component: '0' });
                 }
             }
         }
@@ -58,21 +46,9 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
         for (let i = 0; i < 3; i++) {
             if (matrix[0][i].component === matrix[1][i].component && matrix[1][i].component === matrix[2][i].component) {
                 if (matrix[0][i].component === '1') {
-                    doAnimation({ c1: { row: i, col: 0 }, c2: { row: i, col: 1 }, c3: { row: i, col: 2 } }).then(() => {
-                        alert('X wins');
-                        setScores((prev) => {
-                            return { ...prev, userScore: prev.userScore + 1 }
-                        });
-                        resetGame();
-                    })
+                    singleGameWinner({ c1: { row: i, col: 0 }, c2: { row: i, col: 1 }, c3: { row: i, col: 2 }, component: '1' });
                 } else if (matrix[0][i].component === '0') {
-                    doAnimation({ c1: { row: i, col: 0 }, c2: { row: i, col: 1 }, c3: { row: i, col: 2 } }).then(() => {
-                        alert('O wins');
-                        setScores((prev) => {
-                            return { ...prev, opponentScore: prev.opponentScore + 1 }
-                        });
-                        resetGame()
-                    })
+                    singleGameWinner({ c1: { row: i, col: 0 }, c2: { row: i, col: 1 }, c3: { row: i, col: 2 }, component: '0' });
                 }
             }
         }
@@ -81,45 +57,33 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
     const checkDiagonals = async () => {
         if (matrix[0][0].component === matrix[1][1].component && matrix[1][1].component === matrix[2][2].component) {
             if (matrix[0][0].component === '1') {
-                doAnimation({ c1: { row: 0, col: 0 }, c2: { row: 1, col: 1 }, c3: { row: 2, col: 2 } }).then(() => {
-                    alert('X wins');
-                    setScores((prev) => {
-                        return { ...prev, userScore: prev.userScore + 1 }
-                    });
-                    resetGame();
-                })
+                singleGameWinner({ c1: { row: 0, col: 0 }, c2: { row: 1, col: 1 }, c3: { row: 2, col: 2 }, component: '1' });
             } else if (matrix[0][0].component === '0') {
-                doAnimation({ c1: { row: 0, col: 0 }, c2: { row: 1, col: 1 }, c3: { row: 2, col: 2 } }).then(() => {
-                    alert('O wins');
-                    setScores((prev) => {
-                        return { ...prev, opponentScore: prev.opponentScore + 1 }
-                    });
-                    resetGame()
-                })
+                singleGameWinner({ c1: { row: 0, col: 0 }, c2: { row: 1, col: 1 }, c3: { row: 2, col: 2 }, component: '0' });
             }
         } else if (matrix[0][2].component === matrix[1][1].component && matrix[1][1].component === matrix[2][0].component) {
             if (matrix[1][1].component === '1') {
-                doAnimation({ c1: { row: 0, col: 2 }, c2: { row: 1, col: 1 }, c3: { row: 2, col: 0 } }).then(() => {
-                    alert('X wins');
-                    setScores((prev) => {
-                        return { ...prev, userScore: prev.userScore + 1 }
-                    });
-                    resetGame();
-                })
+                singleGameWinner({ c1: { row: 0, col: 2 }, c2: { row: 1, col: 1 }, c3: { row: 2, col: 0 }, component: '1' });
             } else if (matrix[1][1].component === '0') {
-                doAnimation({ c1: { row: 0, col: 2 }, c2: { row: 1, col: 1 }, c3: { row: 2, col: 0 } }).then(() => {
-                    alert('O wins');
-                    setScores((prev) => {
-                        return { ...prev, opponentScore: prev.opponentScore + 1 }
-                    });
-                    resetGame()
-                })
+                singleGameWinner({ c1: { row: 0, col: 2 }, c2: { row: 1, col: 1 }, c3: { row: 2, col: 0 }, component: '0' });
             }
         }
     }
 
-    const doAnimation = async ({ c1, c2, c3 }) => {
+    const singleGameWinner = async ({ c1, c2, c3, component }) => {
         //doing animation
+        if (component === '1') {
+            alert('X wins');
+            setScores((prev) => {
+                return { ...prev, userScore: prev.userScore + 1 }
+            });
+        } else if (component === '0') {
+            alert('O wins');
+            setScores((prev) => {
+                return { ...prev, opponentScore: prev.opponentScore + 1 }
+            });
+        }
+        resetGame();
     }
 
     const resetGame = () => {
