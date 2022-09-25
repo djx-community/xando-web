@@ -2,6 +2,7 @@ import React from "react";
 import AboutUsCard from "../../components/about-us-card/AboutUsCard";
 import AppTitle from "../../components/app-title/AppTitle";
 import AboutUsDeveloperCard from "../../components/about-us-card/AboutUSDeveloperCard";
+import HomeFooter from "../../components/home-footer/HomeFooter";
 
 export default function PageAboutUs() {
 
@@ -55,6 +56,7 @@ export default function PageAboutUs() {
           })}
         </div>
       </div>
+      <HomeFooter/>
     </section>
   );
 }
