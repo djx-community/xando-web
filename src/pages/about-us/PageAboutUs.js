@@ -34,7 +34,7 @@ export default function PageAboutUs() {
   return (
     <section className="pt-5">
       <AppTitle title="About Us" />
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center md:mt-10 mt-4">
         <AboutUsCard title="From djx" icon={gitHub} url="" />
         <AboutUsCard
           title="Repository"

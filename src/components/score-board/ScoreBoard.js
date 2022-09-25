@@ -3,10 +3,10 @@ import './ScoreBoard.css'
 
 function ScoreBoard({ userScore, opponentScore, bestOf }) {
     return (
-        <section className="pt-3 flex justify-center align-middle">
+        <section className="md:pt-3 pt-24 flex justify-center align-middle">
             <div className="flex-col">
-                <h1 className='text-center text-lg pb-1'>Best of {bestOf}</h1>
-                <table className="text-center w-28 shadow-xl shadow-blue-800">
+                <h1 className='text-center md:text-lg text-base pb-1'>Best of {bestOf}</h1>
+                <table className="text-center md:w-28 w-20 shadow-xl shadow-blue-800">
                     <thead>
                         <tr>
                             <th className='' colSpan={2}>Score</th>
