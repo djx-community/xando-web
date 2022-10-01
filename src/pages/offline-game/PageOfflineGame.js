@@ -4,6 +4,7 @@ import ForfeitMatchFooter from '../../components/forfeit-match-footer/ForfeitMat
 import MatchHeaderArea from '../../components/match-header-area/MatchHeaderArea'
 import OfflineMatchArea from '../../components/offline-match-area/OfflineMatchArea';
 import TurnIndicator from '../../components/turn-indicator/TurnIndicator';
+import WinnerComponent from '../../components/winner-component/WinnerComponent';
 
 function PageOfflineGame() {
   const [scores, setScores] = useState({
@@ -20,28 +21,26 @@ function PageOfflineGame() {
   });
   const [turn, setTurn] = useState(true);
   const [bestOf, setBestOf] = useState(3);
+  const [previousWinner, setPreviousWinner] = useState(null);
+  const [lap, setLap] = useState(1);
 
   useEffect(() => {
-    if (scores.userScore >= bestOf && scores.opponentScore >= bestOf) {
-      alert('Draw');
+    console.log(lap);
+    if (lap > bestOf) {
+      if (scores.userScore > scores.opponentScore) {
+        alert('You Wins');                      //alertContext to be setted as "USER" 
+      } else if (scores.userScore < scores.opponentScore) {
+        alert('Opponent Wins');                  //alertContext to be setted as "opponent"
+      } else {
+        alert('Game ended in Draw');                      //alertContext to be setted as "DRAW"
+      }
       setScores({
         userScore: 0,
         opponentScore: 0
-      });
-    } else if (scores.userScore >= bestOf / 2) {
-      alert('You Win');
-      setScores({
-        userScore: 0,
-        opponentScore: 0
-      });
-    } else if (scores.opponentScore >= bestOf / 2) {
-      alert('You Lose');
-      setScores({
-        userScore: 0,
-        opponentScore: 0
-      });
+      })
+      setLap(1)
     }
-  }, [scores]);
+  }, [lap]);
 
   return (
     <div>
@@ -49,7 +48,8 @@ function PageOfflineGame() {
       <MatchHeaderArea userProfile={userProfile} opponentProfile={opponentProfile} scores={scores} bestOf={bestOf} />
       <TurnIndicator turn={turn} opponent={false} />
       <TurnIndicator turn={turn} opponent={true} />
-      <OfflineMatchArea turn={turn} setTurn={setTurn} setScores={setScores} />
+      <OfflineMatchArea turn={turn} setTurn={setTurn} setScores={setScores} setWinner={setPreviousWinner} setLap={setLap} />
+      <WinnerComponent winner={previousWinner} />
       <ForfeitMatchFooter />
     </div>
   )
