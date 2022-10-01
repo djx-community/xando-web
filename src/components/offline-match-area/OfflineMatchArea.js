@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function OfflineMatchArea({ turn, setTurn, setScores, setWinner }) {
+function OfflineMatchArea({ turn, setTurn, setScores, setWinner, setLap }) {
     const [matrix, setMatrix] = useState(
         [
             [
@@ -26,13 +26,8 @@ function OfflineMatchArea({ turn, setTurn, setScores, setWinner }) {
             checkColumns()
             checkDiagonals()
         } else if (countTurn === 9) {
-            alert('Draw');
-            setScores((prev) => {
-                return {
-                    userScore: prev.userScore +1,
-                    opponentScore: prev.opponentScore+1
-                }
-            })
+            alert('Draw');                      //winner to be setted as "DRAW"
+            setLap(lap => lap + 1);
             resetGame();
         }
     }, [countTurn]);
@@ -91,6 +86,7 @@ function OfflineMatchArea({ turn, setTurn, setScores, setWinner }) {
             });
         }
         resetGame();
+        setLap((prev) => prev + 1);
     }
 
     const resetGame = () => {
