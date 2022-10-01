@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 function ButtonEnterId() {
     const [id, setId] = useState();
     const handleButtonClick = () => {
-        console.log(id)
     }
     return (
         <div className="m-5 bg-sky-800 text-white text-xl md:text-3xl 

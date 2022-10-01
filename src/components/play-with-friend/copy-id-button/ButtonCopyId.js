@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 function ButtonCopyId({ id }) {
     const [buttonClicked, setButtonClicked] = useState(false);
     const handleButtonClick = () => {
-        console.log('copy id');
         //copy id to clipboard
         //toast clipboard copied
     }

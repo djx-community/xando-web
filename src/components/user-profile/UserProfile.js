@@ -5,7 +5,6 @@ function UserProfile({ offline, left, edit, opponent, userName, userId }) {
     const [newUserName, setNewUserName] = useState(userName);
     useEffect(() => {
         //service call
-        console.log(newUserName);
     }, [newUserName]);
     return (
         <div className={`absolute ${left ? 'left-4 md:left-32' : 'right-4 md:right-32'} md:top-10 top-12 text-end gap-0`}>
