@@ -4,6 +4,7 @@ import ForfeitMatchFooter from '../../components/forfeit-match-footer/ForfeitMat
 import MatchHeaderArea from '../../components/match-header-area/MatchHeaderArea'
 import OfflineMatchArea from '../../components/offline-match-area/OfflineMatchArea';
 import TurnIndicator from '../../components/turn-indicator/TurnIndicator';
+import WinnerComponent from '../../components/winner-component/WinnerComponent';
 
 function PageOfflineGame() {
   const [scores, setScores] = useState({
@@ -20,6 +21,7 @@ function PageOfflineGame() {
   });
   const [turn, setTurn] = useState(true);
   const [bestOf, setBestOf] = useState(3);
+  const [previousWinner, setPreviousWinner] = useState(null);
 
   useEffect(() => {
     if (scores.userScore >= bestOf && scores.opponentScore >= bestOf) {
@@ -49,7 +51,8 @@ function PageOfflineGame() {
       <MatchHeaderArea userProfile={userProfile} opponentProfile={opponentProfile} scores={scores} bestOf={bestOf} />
       <TurnIndicator turn={turn} opponent={false} />
       <TurnIndicator turn={turn} opponent={true} />
-      <OfflineMatchArea turn={turn} setTurn={setTurn} setScores={setScores} />
+      <OfflineMatchArea turn={turn} setTurn={setTurn} setScores={setScores} setWinner={setPreviousWinner}/>
+      <WinnerComponent winner={previousWinner} />
       <ForfeitMatchFooter />
     </div>
   )

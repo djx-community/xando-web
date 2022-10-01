@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function OfflineMatchArea({ turn, setTurn, setScores }) {
+function OfflineMatchArea({ turn, setTurn, setScores, setWinner }) {
     const [matrix, setMatrix] = useState(
         [
             [
@@ -80,12 +80,12 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
     const singleGameWinner = async ({ c1, c2, c3, component }) => {
         //doing animation
         if (component === 'X') {
-            alert('X wins');
+            setWinner('X wins!!!');
             setScores((prev) => {
                 return { ...prev, userScore: prev.userScore + 1 }
             });
         } else if (component === 'O') {
-            alert('O wins');
+            setWinner('O wins!!!');
             setScores((prev) => {
                 return { ...prev, opponentScore: prev.opponentScore + 1 }
             });
@@ -121,7 +121,7 @@ function OfflineMatchArea({ turn, setTurn, setScores }) {
                             {
                                 row.map((cell, cellIndex) => {
                                     return (<button key={rowIndex + 'x' + cellIndex}
-                                        className={`md:w-28 w-20 md:h-28 h-20 block p-6 max-w-sm border-white
+                                        className={`md:w-28 w-20 md:h-28 h-20 block p-6 max-w-sm border-white font-bold
                                        ${!cell.clicked && 'hover:bg-gray-100 dark:hover:bg-blue-800'}  ddark:bg-gradient-to-r from-slate-900 to-blue-900 text-3xl 
                                        ${rowIndex === 0 && 'border-b-4'} ${rowIndex === 1 && 'border-y-4'} ${rowIndex === 2 && 'border-t-4'} 
                                        ${cellIndex === 0 && 'border-r-4'} ${cellIndex === 1 && 'border-x-4'} ${cellIndex === 2 && 'border-l-4'}`}
