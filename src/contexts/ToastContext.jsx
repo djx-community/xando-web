@@ -27,16 +27,16 @@ export function ToastContextProvider({ children }) {
       {toasts.map((toast) => (
         <div
           id="toast-undo"
-          class="flex absolute bottom-14 right-5 items-center p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+          className="flex absolute bottom-14 right-5 items-center p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
           role="alert"
         >
-          <div class="text-sm font-normal">
+          <div className="text-sm font-normal">
             {toast.name} {toast.message}
           </div>
-          <div class="flex items-center ml-auto space-x-2">
+          <div className="flex items-center ml-auto space-x-2">
             {toast.request ? (
               <a
-                class="text-sm font-medium text-green-600 p-1.5 hover:bg-green-100 rounded-lg dark:text-green-500 dark:hover:bg-gray-700"
+                className="text-sm font-medium text-green-600 p-1.5 hover:bg-green-100 rounded-lg dark:text-green-500 dark:hover:bg-gray-700"
                 href="#"
               >
                 Accept
@@ -46,7 +46,7 @@ export function ToastContextProvider({ children }) {
             )}
 
             <a
-              class="text-sm font-medium text-red-600 p-1.5 hover:bg-green-100 rounded-lg dark:text-red-500 dark:hover:bg-gray-700"
+              className="text-sm font-medium text-red-600 p-1.5 hover:bg-green-100 rounded-lg dark:text-red-500 dark:hover:bg-gray-700"
               href="#"
             >
               Decline
