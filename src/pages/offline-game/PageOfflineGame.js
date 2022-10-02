@@ -25,7 +25,6 @@ function PageOfflineGame() {
   const [lap, setLap] = useState(1);
 
   useEffect(() => {
-    console.log(lap);
     if (lap > bestOf) {
       if (scores.userScore > scores.opponentScore) {
         alert('You Wins');                      //alertContext to be setted as "USER" 
