@@ -1,0 +1,65 @@
+/* Horizontal Line */
+.horizontal::before {
+    content: "";
+    position: absolute;
+    margin-top: 21px;
+    margin-left: -45px;
+    width: 113px;
+    transform: rotate(0deg);
+    transition: 2s;
+    animation: line-draw 1s ease-in-out 1 normal forwards;
+}
+
+/* Vertical Line */
+.vertical::before {
+  content: "";
+  position: absolute;
+  margin-top: 10px;
+  margin-left: -2.9rem;
+  width: 112px;
+  transform: rotate(90deg);
+  transition: 2s;
+  animation: line-draw 1s ease-in-out 1 normal forwards;
+}
+
+/* Right diagonal Line */
+.right_diagonal::before {
+    content: "";
+    position: absolute;
+    border-top: 109px;
+    margin-top: 19px;
+    margin-left: -66px;
+    width: 160px;
+    transform: rotate(45deg);
+    transition: 2s;
+    animation: line-draw 1s ease-in-out 1 normal forwards;
+}
+
+/* Left diagonal Line */
+.left_diagonal::before {
+  content: "";
+  position: absolute;
+  border-top: 6px;
+  margin-top: 12px;
+  margin-left: -60px;
+  width: 161px;
+  transform: rotate(135deg);
+  transition: 2s;
+  animation: line-draw 1s ease-in-out 1 normal forwards;
+}
+
+/* Animation for line draw */
+@keyframes line-draw {
+  35% {
+    box-shadow: 0px 0px 3px 2px rgb(0, 128, 255);
+    scale: 0;
+  }
+  50% {
+    scale: 0.5;
+    box-shadow: 0px 0px 3px 2px rgb(255, 151, 40);
+  }
+  100% {
+    scale: 1;
+    box-shadow: 0px 0px 3px 2px rgb(255, 205, 40);
+  }
+}
