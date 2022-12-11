@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import sound from "../../assets/lineDraw.mp3";
 import "./DrawLine.css";
+
 function OfflineMatchArea({ turn, setTurn, setScores, setWinner, setLap }) {
   const [matrix, setMatrix] = useState([
     [
@@ -21,11 +23,14 @@ function OfflineMatchArea({ turn, setTurn, setScores, setWinner, setLap }) {
   const [countTurn, setCountTurn] = useState(0);
   useEffect(() => {
     if (countTurn >= 5 && countTurn < 9) {
-     let square = document.querySelectorAll(".grid-area button");  // to take each cell object to draw line
-    //start to check if there is a winner
-    checkRows(square);//check rows
-    checkColumns(square);//check columns
-    checkDiagonals(square);//check diagonals
+      let square = document.querySelectorAll(".grid-area button"); // to take each cell object to draw line
+      let matchArea=document.getElementById("match-area");//to take match area object to shake
+      let audio = new Audio(sound); //to create object of line drawing sound effect
+
+      //start to check if there is a winner
+      checkRows(square, audio,matchArea); //check rows
+      checkColumns(square, audio,matchArea); //check columns
+      checkDiagonals(square, audio,matchArea); //check diagonals
     } else if (countTurn === 9) {
       alert("Draw"); //winner to be set as "DRAW"
       setLap((lap) => lap + 1);
@@ -33,29 +38,48 @@ function OfflineMatchArea({ turn, setTurn, setScores, setWinner, setLap }) {
     }
   }, [countTurn]);
 
-  const checkRows = (square) => {
-       
-//___________ For draw line through rows _______________________________________
-let row_one=false,row_two=false,row_three=false;
+  const checkRows = (square, audio,matchArea) => {
+    //___________ For draw line through rows _______________________________________
+    let row_one = false,
+      row_two = false,
+      row_three = false;
 
-row_one=(matrix[0][0].component === matrix[0][1].component && matrix[0][0].component === matrix[0][2].component&&matrix[0][0].component!==null);
-row_two=(matrix[1][0].component === matrix[1][1].component &&matrix[1][0].component === matrix[1][2].component&&matrix[1][0].component!==null);
-row_three=(matrix[2][0].component === matrix[2][1].component &&matrix[2][0].component === matrix[2][2].component&&matrix[2][0].component!==null);
+    row_one =
+      matrix[0][0].component === matrix[0][1].component &&
+      matrix[0][0].component === matrix[0][2].component &&
+      matrix[0][0].component !== null;
+    row_two =
+      matrix[1][0].component === matrix[1][1].component &&
+      matrix[1][0].component === matrix[1][2].component &&
+      matrix[1][0].component !== null;
+    row_three =
+      matrix[2][0].component === matrix[2][1].component &&
+      matrix[2][0].component === matrix[2][2].component &&
+      matrix[2][0].component !== null;
 
-if (row_one) {
-  square[0].classList.add("horizontal");
-  square[1].classList.add("horizontal");
-  square[2].classList.add("horizontal");
-}else if(row_two){
-  square[3].classList.add("horizontal");
-  square[4].classList.add("horizontal");
-  square[5].classList.add("horizontal");
-}else if(row_three){
-  square[6].classList.add("horizontal");
-  square[7].classList.add("horizontal");
-  square[8].classList.add("horizontal");
-}
-// ********************************************************************************
+    if (row_one) {
+      square[0].classList.add("horizontal");
+      square[1].classList.add("horizontal");
+      square[2].classList.add("horizontal");
+      audio.play(); //to play the audio if match the first row
+      matchArea.classList.add("match-area");//to shake tha match area
+      vibrate(); // to perform vibration
+    } else if (row_two) {
+      square[3].classList.add("horizontal");
+      square[4].classList.add("horizontal");
+      square[5].classList.add("horizontal");
+      audio.play(); //to play the audio if match the second row
+      matchArea.classList.add("match-area");//to shake tha match area
+      vibrate(); // to perform vibration
+    } else if (row_three) {
+      square[6].classList.add("horizontal");
+      square[7].classList.add("horizontal");
+      square[8].classList.add("horizontal");
+      audio.play(); //to play the audio if match the third row\
+      matchArea.classList.add("match-area");//to shake tha match area
+      vibrate(); // to perform vibration
+    }
+    // ********************************************************************************
     for (let i = 0; i < 3; i++) {
       if (
         matrix[i][0].component === matrix[i][1].component &&
@@ -80,32 +104,54 @@ if (row_one) {
     }
   };
 
-  const checkColumns =  (square) => {
-    
-//___________ For draw line through columns _______________________________________
-    let column_one=false,column_two=false,column_three=false;
+  const checkColumns = (square, audio,matchArea) => {
+    //___________ For draw line through columns _______________________________________
+    let column_one = false,
+      column_two = false,
+      column_three = false;
 
-    column_one=(matrix[0][0].component === matrix[1][0].component && matrix[0][0].component === matrix[2][0].component&&matrix[0][0].component!==null);
-    column_two=(matrix[0][1].component === matrix[1][1].component &&matrix[0][1].component === matrix[2][1].component&&matrix[0][1].component!==null);
-    column_three=(matrix[0][2].component === matrix[1][2].component &&matrix[0][2].component === matrix[2][2].component&&matrix[0][2].component!==null);
-    
+    column_one =
+      matrix[0][0].component === matrix[1][0].component &&
+      matrix[0][0].component === matrix[2][0].component &&
+      matrix[0][0].component !== null;
+    column_two =
+      matrix[0][1].component === matrix[1][1].component &&
+      matrix[0][1].component === matrix[2][1].component &&
+      matrix[0][1].component !== null;
+    column_three =
+      matrix[0][2].component === matrix[1][2].component &&
+      matrix[0][2].component === matrix[2][2].component &&
+      matrix[0][2].component !== null;
+
     if (column_one) {
       square[0].classList.add("vertical");
       square[3].classList.add("vertical");
       square[6].classList.add("vertical");
-    }else if(column_two){
+      audio.play(); //to play the audio if match the first column
+      matchArea.classList.add("match-area");//to shake tha match area
+      vibrate(); // to perform vibration
+    } else if (column_two) {
       square[1].classList.add("vertical");
       square[4].classList.add("vertical");
       square[7].classList.add("vertical");
-    }else if(column_three){
+      audio.play(); //to play the audio if match the second column
+      matchArea.classList.add("match-area");//to shake tha match area
+      vibrate(); // to perform vibration
+    } else if (column_three) {
       square[2].classList.add("vertical");
       square[5].classList.add("vertical");
       square[8].classList.add("vertical");
+      audio.play(); //to play the audio if match the third column
+      matchArea.classList.add("match-area");//to shake tha match area
+      vibrate(); // to perform vibration
     }
-// ********************************************************************************
+    // ********************************************************************************
 
     for (let i = 0; i < 3; i++) {
-      if (matrix[0][i].component === matrix[1][i].component||matrix[1][i].component === matrix[2][i].component) {
+      if (
+        matrix[0][i].component === matrix[1][i].component ||
+        matrix[1][i].component === matrix[2][i].component
+      ) {
         if (matrix[0][i].component === "X") {
           singleGameWinner({
             c1: { row: i, col: 0 },
@@ -125,16 +171,20 @@ if (row_one) {
     }
   };
 
-  const checkDiagonals =  (square) => {
-    if (matrix[0][0].component === matrix[1][1].component &&matrix[1][1].component === matrix[2][2].component) {
-
-//_____________Diagonal line______________________________________
+  const checkDiagonals = (square, audio,matchArea) => {
+    if (
+      matrix[0][0].component === matrix[1][1].component &&
+      matrix[1][1].component === matrix[2][2].component
+    ) {
+      //_____________Diagonal line______________________________________
 
       square[0].classList.add("right_diagonal");
       square[4].classList.add("right_diagonal");
       square[8].classList.add("right_diagonal");
-
-//****************************************************************   
+      audio.play(); //to play the audio if match the right diagonal
+      matchArea.classList.add("match-area");//to shake tha match area
+      vibrate(); // to perform vibration
+      //****************************************************************
       if (matrix[0][0].component === "X") {
         singleGameWinner({
           c1: { row: 0, col: 0 },
@@ -157,6 +207,9 @@ if (row_one) {
       square[2].classList.add("left_diagonal");
       square[4].classList.add("left_diagonal");
       square[6].classList.add("left_diagonal");
+      audio.play(); //to play the audio if match the left diagonal
+      matchArea.classList.add("match-area");//to shake tha match area
+      vibrate(); // to perform vibration
       if (matrix[1][1].component === "X") {
         singleGameWinner({
           c1: { row: 0, col: 2 },
@@ -188,7 +241,7 @@ if (row_one) {
         return { ...prev, opponentScore: prev.opponentScore + 1 };
       });
     }
-    // resetGame(); // if you remove this comment line drawing animation does not appear among the little bit  
+    // resetGame(); // if you remove this comment line drawing animation does not appear among the little bit
     setLap((prev) => prev + 1);
   };
 
@@ -213,16 +266,19 @@ if (row_one) {
     setCountTurn(0);
   };
   return (
-    <section className="pt-3 md:pt-16 flex justify-center align-middle">
+    <section id="match-area" className="pt-3 md:pt-15 mt-12 flex justify-center align-middle">
       <div className="">
         {matrix.map((row, rowIndex) => {
           return (
-            <div key={rowIndex} className="grid-area flex shadow-[0_35px_60px_-15px_rgba(1,1,1,0.3)] rounded-l-lg">
+            <div
+              key={rowIndex}
+              className="grid-area flex shadow-[0_35px_60px_-15px_rgba(1,1,1,0.3)] rounded-l-lg"
+            >
               {row.map((cell, cellIndex) => {
                 return (
                   <button
                     key={rowIndex + "x" + cellIndex}
-                    className={`md:w-28 w-20 md:h-28 h-20 block p-6 max-w-sm border-white font-bold ${
+                    className={`md:w-28 w-28 md:h-28 h-28 block p-6 max-w-sm border-white font-bold ${
                       !cell.clicked &&
                       "hover:bg-gray-100 dark:hover:bg-blue-800"
                     }  from-slate-900 to-blue-900 text-3xl ${
@@ -257,5 +313,10 @@ if (row_one) {
     </section>
   );
 }
-
+function vibrate() {
+  // To check that is vibration API supported
+  if (navigator.vibrate) {
+    window.navigator.vibrate(400);
+  } 
+}
 export default OfflineMatchArea;
