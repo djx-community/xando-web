@@ -14,7 +14,7 @@
   - Play against a computer opponent
 
 <!-- Yet To Be Added -->
-<a href='#' target='_blank'> 
+<a href='https://docs.google.com/document/d/1fvDJS4D6J-d1RyZkKOTOcFTsZlPgVB3zexQi6c1urII/edit?usp=sharing' target='_blank'> 
 Click Here for the Developer Manual for this Project
 </a>
 
@@ -34,7 +34,7 @@ Use this command to clone this repo to your local machine\
 ### Setup env variables
 env files should be in root path of the project folder.\
 Development env file as `.env.development`.\
-Production env, `.env.production` as well.\
+Production env, `.env.production` as well.
 
 ## Running the Project on Development Mode
 
