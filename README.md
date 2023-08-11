@@ -5,6 +5,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XandO is an engaging multiplayer Tic Tac Toe game that brings a classic to the digital realm. This interactive platform provides players with a virtual arena to compete in the timeless battle of X's and O's. With a user-friendly interface and seamless gameplay, XandO offers an entertaining experience for players of all ages. Whether you're looking to relive the nostalgia of this beloved game or introduce a new generation to its strategic charm, XandO is the ultimate destination for strategic duels and friendly matches. Get ready to outwit your opponents and claim victory in this modern twist on a traditional favorite.
 
 
+<a href='https://discord.gg/g9ZEnxsWDz' target='_blank'> 
+Click Here to Join DJX Community Discord
+</a> (Join the team to get peer-to-peer communication during development.)
+
 ## Play Modes
 - Quick Play
   - Play against a random opponent
@@ -12,10 +16,6 @@
   - Play against a friend by sharing a unique game code
 - Play Offline
   - Play against a computer opponent
-
-<a href='https://discord.gg/g9ZEnxsWDz' target='_blank'> 
-Click Here to Join DJX Community Discord
-</a>
 <!-- Yet To Be Added -->
 <a href='https://docs.google.com/document/d/1fvDJS4D6J-d1RyZkKOTOcFTsZlPgVB3zexQi6c1urII/edit?usp=sharing' target='_blank'> 
 Click Here for the Developer Manual for this Project
