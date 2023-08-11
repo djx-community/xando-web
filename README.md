@@ -13,6 +13,9 @@
 - Play Offline
   - Play against a computer opponent
 
+<a href='https://discord.gg/g9ZEnxsWDz' target='_blank'> 
+Click Here to Join DJX Community Discord
+</a>
 <!-- Yet To Be Added -->
 <a href='https://docs.google.com/document/d/1fvDJS4D6J-d1RyZkKOTOcFTsZlPgVB3zexQi6c1urII/edit?usp=sharing' target='_blank'> 
 Click Here for the Developer Manual for this Project
