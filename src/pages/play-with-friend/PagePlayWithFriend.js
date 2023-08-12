@@ -6,9 +6,9 @@ import ButtonEnterId from "../../components/play-with-friend/enter-id-button/But
 
 function PagePlayWithFriend() {
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <AppTitle title={"Play with Friend"} />
-      <section className="pt-12 flex justify-center align-middle">
+      <section className="flex flex-1 justify-center items-center">
         <div className="flex-col">
           <ButtonEnterId />
           <ButtonCopyId id={"aksjdh56"} />
