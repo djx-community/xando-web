@@ -9,7 +9,7 @@ function PageUserHome() {
     userId: "123456789",
   });
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <AppTitle title={"X & O"} />
       <UserProfile
         left={false}
@@ -18,7 +18,9 @@ function PageUserHome() {
         userName={profile && profile.username}
         userId={profile && profile.userId}
       />
-      <MainMenu />
+      <section className="flex flex-1 justify-center items-center">
+        <MainMenu />
+      </section>
       <HomeFooter />
     </div>
   );
