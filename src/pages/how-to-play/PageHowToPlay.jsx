@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PageHowToPlay() {
+function PageHowToPlay () {
   return (
     <div>PageHowToPlay</div>
   )

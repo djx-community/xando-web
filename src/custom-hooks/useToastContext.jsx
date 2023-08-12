@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import ToastContext from "../contexts/ToastContext";
+import { useContext } from 'react'
+import ToastContext from '../contexts/ToastContext'
 
-export default function useToastContext() {
-  return useContext(ToastContext);
+export default function useToastContext () {
+  return useContext(ToastContext)
 }
 
-/* Using 
+/* Using
 1. import useToastContext from "../../custom-hooks/useToastContext";
 2. const Toast = useToastContext();
 3. const state = {
