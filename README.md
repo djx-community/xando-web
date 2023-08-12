@@ -4,7 +4,11 @@
 ## Overview
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XandO is an engaging multiplayer Tic Tac Toe game that brings a classic to the digital realm. This interactive platform provides players with a virtual arena to compete in the timeless battle of X's and O's. With a user-friendly interface and seamless gameplay, XandO offers an entertaining experience for players of all ages. Whether you're looking to relive the nostalgia of this beloved game or introduce a new generation to its strategic charm, XandO is the ultimate destination for strategic duels and friendly matches. Get ready to outwit your opponents and claim victory in this modern twist on a traditional favorite.
 
+<a href="https://www.figma.com/file/D6TGtLzOCsumbxo7cvg0Ko/Untitled?type=design&node-id=0%3A1&mode=design&t=PuGQSqB9DXpkMm0o-1">
+Click here to view the UI blueprint
+</a> (figma Design)
 
+<br/>
 <a href='https://discord.gg/g9ZEnxsWDz' target='_blank'> 
 Click Here to Join DJX Community Discord
 </a> (Join the team to get peer-to-peer communication during development.)
