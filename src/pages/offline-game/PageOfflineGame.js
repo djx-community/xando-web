@@ -42,13 +42,15 @@ function PageOfflineGame() {
   }, [lap]);
 
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <AppTitle title={'X & O'} />
-      <MatchHeaderArea userProfile={userProfile} opponentProfile={opponentProfile} scores={scores} bestOf={bestOf} />
-      <TurnIndicator turn={turn} opponent={false} />
-      <TurnIndicator turn={turn} opponent={true} />
-      <OfflineMatchArea turn={turn} setTurn={setTurn} setScores={setScores} setWinner={setPreviousWinner} setLap={setLap} />
-      <WinnerComponent winner={previousWinner} />
+      <div className="flex flex-col flex-1 justify-center items-center">
+        <MatchHeaderArea userProfile={userProfile} opponentProfile={opponentProfile} scores={scores} bestOf={bestOf} />
+        <TurnIndicator turn={turn} opponent={false} />
+        <TurnIndicator turn={turn} opponent={true} />
+        <OfflineMatchArea turn={turn} setTurn={setTurn} setScores={setScores} setWinner={setPreviousWinner} setLap={setLap} />
+        <WinnerComponent winner={previousWinner} />
+      </div>
       <ForfeitMatchFooter />
       {/* <audio controls autoPlay loop>
         <source src='sword-from-sheath-6910.ogg' type='audio/ogg'/>
