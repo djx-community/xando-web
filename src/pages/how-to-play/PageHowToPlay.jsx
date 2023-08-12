@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 function PageHowToPlay() {
   return (
     <div>PageHowToPlay</div>
-  )
+  );
 }
 
-export default PageHowToPlay
+export default PageHowToPlay;

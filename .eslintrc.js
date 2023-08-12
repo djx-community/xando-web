@@ -17,10 +17,12 @@ module.exports = {
     'react'
   ],
   rules: {
-    'no-duplicate-imports': 'error',
     'comma-dangle': ['error', 'never'],
-    'no-unused-vars': 'error',
+    'no-unused-vars': 'warn',
     'no-console': 'warn',
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    'linebreak-style': 0,
+    'no-plusplus': 0,
+    'max-len': ['warn', { code: 100 }]
   }
 };

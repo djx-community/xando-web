@@ -1,34 +1,38 @@
-import { createContext, useState, useEffect, useCallback } from "react";
+import React, {
+  createContext, useState, useEffect, useCallback
+} from 'react';
+
 const BackDropContext = createContext();
 export default BackDropContext;
 
 export function BackDropContextProvider({ children }) {
   const [backDrop, setBackDrop] = useState({});
+  const closeBackDrop = () => {
+    document.getElementById('backdrop').classList.add('hidden');
+  };
   //   Callback function to set alert
   const openBackDrop = useCallback(
+    // eslint-disable-next-line no-shadow
     (backDrop) => {
       setBackDrop(backDrop);
       if (backDrop.open) {
-        document.getElementById("backdrop").classList.remove("hidden");
+        document.getElementById('backdrop').classList.remove('hidden');
       } else {
         closeBackDrop();
       }
     },
     [setBackDrop]
   );
-  const closeBackDrop = () => {
-    document.getElementById("backdrop").classList.add("hidden");
-  };
-
+  const backDropValue = React.useMemo(() => ({ openBackDrop, closeBackDrop }), []);
   return (
-    <BackDropContext.Provider value={{ openBackDrop, closeBackDrop }}>
+    <BackDropContext.Provider value={backDropValue}>
       {children}
       <div
         id="backdrop"
         className="absolute top-0 hidden backdrop-blur-sm brightness-50 z-[100] flex justify-center items-center w-full h-full"
       >
         <div>
-          {backDrop.icon === "" ? (
+          {backDrop.icon === '' ? (
             <div role="status" className="justify-center items-center flex">
               <svg
                 aria-hidden="true"

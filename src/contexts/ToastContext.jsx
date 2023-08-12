@@ -1,12 +1,17 @@
-import { createContext, useState, useEffect, useCallback } from "react";
+import React, {
+  createContext, useState, useEffect, useCallback
+} from 'react';
+
 const ToastContext = createContext();
 export default ToastContext;
 
 export function ToastContextProvider({ children }) {
   const [toasts, setToasts] = useState([]);
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (toasts.length > 0) {
       const timer = setTimeout(
+        // eslint-disable-next-line no-shadow
         () => setToasts((toasts) => toasts.slice(1)),
         3000
       );
@@ -16,6 +21,7 @@ export function ToastContextProvider({ children }) {
 
   const addToast = useCallback(
     (toast) => {
+      // eslint-disable-next-line no-shadow
       setToasts((toasts) => [...toasts, toast]);
     },
     [setToasts]
@@ -31,23 +37,25 @@ export function ToastContextProvider({ children }) {
           role="alert"
         >
           <div className="text-sm font-normal">
-            {toast.name} {toast.message}
+            {toast.name}
+            {' '}
+            {toast.message}
           </div>
           <div className="flex items-center ml-auto space-x-2">
             {toast.request ? (
               <a
                 className="text-sm font-medium text-green-600 p-1.5 hover:bg-green-100 rounded-lg dark:text-green-500 dark:hover:bg-gray-700"
-                href="#"
+                href="/"
               >
                 Accept
               </a>
             ) : (
-              ""
+              ''
             )}
 
             <a
               className="text-sm font-medium text-red-600 p-1.5 hover:bg-green-100 rounded-lg dark:text-red-500 dark:hover:bg-gray-700"
-              href="#"
+              href="/"
             >
               Decline
             </a>

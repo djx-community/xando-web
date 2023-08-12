@@ -1,5 +1,6 @@
-import { useContext } from "react";
-import BackDropContext from "../contexts/BackDropContext";
+import { useContext } from 'react';
+import BackDropContext from '../contexts/BackDropContext';
+
 export default function useBackDropContext() {
   return useContext(BackDropContext);
 }
