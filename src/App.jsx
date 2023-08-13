@@ -1,17 +1,18 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import PageOfflineGame from "./pages/offline-game/PageOfflineGame";
-import PageUserHome from "./pages/user-home/PageUserHome";
-import pages from "./constants/pages";
-import PagePlayWithFriend from "./pages/play-with-friend/PagePlayWithFriend";
-import PageAboutUs from "./pages/extras/about-us/PageAboutUs";
-import { ToastContextProvider } from "./contexts/ToastContext";
-import { AlertContextProvider } from "./contexts/AlertContext";
-import PageExtras from "./pages/extras/PageExtras";
-import PageHowToPlay from "./pages/how-to-play/PageHowToPlay";
-import { BackDropContextProvider } from "./contexts/BackDropContext";
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import './App.css'
+import PageOfflineGame from './pages/offline-game/PageOfflineGame'
+import PageUserHome from './pages/user-home/PageUserHome'
+import pages from './constants/pages'
+import PagePlayWithFriend from './pages/play-with-friend/PagePlayWithFriend'
+import PageAboutUs from './pages/about-us/PageAboutUs'
+import { ToastContextProvider } from './contexts/ToastContext'
+import { AlertContextProvider } from './contexts/AlertContext'
+import PageExtras from './pages/extras/PageExtras'
+import PageHowToPlay from './pages/how-to-play/PageHowToPlay'
+import { BackDropContextProvider } from './contexts/BackDropContext'
 
-function App() {
+function App () {
   return (
     <ToastContextProvider>
       <AlertContextProvider>
@@ -32,7 +33,7 @@ function App() {
         </BackDropContextProvider>
       </AlertContextProvider>
     </ToastContextProvider>
-  );
+  )
 }
 
-export default App;
+export default App

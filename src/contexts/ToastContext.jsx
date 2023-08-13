@@ -1,31 +1,32 @@
-import { createContext, useState, useEffect, useCallback } from "react";
-const ToastContext = createContext();
-export default ToastContext;
+import React, { createContext, useState, useEffect, useCallback } from 'react'
+const ToastContext = createContext()
+export default ToastContext
 
-export function ToastContextProvider({ children }) {
-  const [toasts, setToasts] = useState([]);
+export function ToastContextProvider ({ children }) {
+  const [toasts, setToasts] = useState([])
   useEffect(() => {
     if (toasts.length > 0) {
       const timer = setTimeout(
         () => setToasts((toasts) => toasts.slice(1)),
         3000
-      );
-      return () => clearTimeout(timer);
+      )
+      return () => clearTimeout(timer)
     }
-  }, [toasts]);
+  }, [toasts])
 
   const addToast = useCallback(
     (toast) => {
-      setToasts((toasts) => [...toasts, toast]);
+      setToasts((toasts) => [...toasts, toast])
     },
     [setToasts]
-  );
+  )
 
   return (
     <ToastContext.Provider value={addToast}>
       {children}
       {toasts.map((toast) => (
         <div
+        key= {toast.name}
           id="toast-undo"
           className="flex absolute bottom-14 right-5 items-center p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
           role="alert"
@@ -34,16 +35,18 @@ export function ToastContextProvider({ children }) {
             {toast.name} {toast.message}
           </div>
           <div className="flex items-center ml-auto space-x-2">
-            {toast.request ? (
+            {toast.request
+              ? (
               <a
                 className="text-sm font-medium text-green-600 p-1.5 hover:bg-green-100 rounded-lg dark:text-green-500 dark:hover:bg-gray-700"
                 href="#"
               >
                 Accept
               </a>
-            ) : (
-              ""
-            )}
+                )
+              : (
+                  ''
+                )}
 
             <a
               className="text-sm font-medium text-red-600 p-1.5 hover:bg-green-100 rounded-lg dark:text-red-500 dark:hover:bg-gray-700"
@@ -76,5 +79,5 @@ export function ToastContextProvider({ children }) {
         </div>
       ))}
     </ToastContext.Provider>
-  );
+  )
 }

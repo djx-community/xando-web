@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import ScoreBoard from '../score-board/ScoreBoard';
+import React from 'react'
+import ScoreBoard from '../score-board/ScoreBoard'
 import UserProfile from '../user-profile/UserProfile'
 
-function MatchHeaderArea({ scores, userProfile, opponentProfile, bestOf }) {
-    return (
+function MatchHeaderArea ({ scores, userProfile, opponentProfile, bestOf }) {
+  return (
         <div>
             <UserProfile offline={true} left={false} edit={true} opponent={false}
                 userName={userProfile && userProfile.username} userId={userProfile && userProfile.userId} />
@@ -11,7 +11,7 @@ function MatchHeaderArea({ scores, userProfile, opponentProfile, bestOf }) {
                 userName={opponentProfile && opponentProfile.username} userId={opponentProfile && opponentProfile.userId} />
             <ScoreBoard userScore={scores.userScore} opponentScore={scores.opponentScore} bestOf={bestOf} />
         </div>
-    )
+  )
 }
 
 export default MatchHeaderArea
