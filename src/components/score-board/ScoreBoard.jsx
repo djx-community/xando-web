@@ -1,8 +1,8 @@
 import React from 'react'
 import './ScoreBoard.css'
 
-function ScoreBoard({ userScore, opponentScore, bestOf }) {
-    return (
+function ScoreBoard ({ userScore, opponentScore, bestOf }) {
+  return (
         <section className="md:pt-3 pt-24 flex justify-center align-middle">
             <div className="flex-col">
                 <h1 className='text-center md:text-lg text-base pb-1'>Best of {bestOf}</h1>
@@ -21,7 +21,7 @@ function ScoreBoard({ userScore, opponentScore, bestOf }) {
                 </table>
             </div>
         </section>
-    )
+  )
 }
 
 export default ScoreBoard

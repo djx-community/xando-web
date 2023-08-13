@@ -1,37 +1,37 @@
-import { createContext, useState, useEffect, useCallback } from "react";
-const AlertContext = createContext();
-export default AlertContext;
+import React, { createContext, useState, useCallback } from 'react'
+const AlertContext = createContext()
+export default AlertContext
 
-export function AlertContextProvider({ children }) {
-  const [alert, setAlert] = useState({});
+export function AlertContextProvider ({ children }) {
+  const [alert, setAlert] = useState({})
   //   Callback function to set alert
   const addAlert = useCallback(
     (alert) => {
-      setAlert(alert);
+      setAlert(alert)
       if (alert.open) {
-        let element = document.getElementById("popup-modal");
-        element.classList.remove("hidden");
-        element.classList.add("flex");
+        const element = document.getElementById('popup-modal')
+        element.classList.remove('hidden')
+        element.classList.add('flex')
       }
     },
     [setAlert]
-  );
+  )
   const closeAlert = () => {
-    let element = document.getElementById("popup-modal");
-    element.classList.remove("flex");
-    element.classList.add("hidden");
-  };
+    const element = document.getElementById('popup-modal')
+    element.classList.remove('flex')
+    element.classList.add('hidden')
+  }
   //   Accepts an alert object and sets it to the state
   const handleAccept = () => {
-    closeAlert();
-    alert.action();
-  };
+    closeAlert()
+    alert.action()
+  }
 
   //   Closes the alert and performs the action
   const handleDenied = () => {
-    alert.exit();
-    closeAlert();
-  };
+    alert.exit()
+    closeAlert()
+  }
   return (
     <AlertContext.Provider value={addAlert}>
       {children}
@@ -66,8 +66,8 @@ export function AlertContextProvider({ children }) {
                 className="sr-only"
                 onClick={() => {
                   document
-                    .getElementById("popup-modal")
-                    .classList.add("hidden");
+                    .getElementById('popup-modal')
+                    .classList.add('hidden')
                 }}
               >
                 Close modal
@@ -92,7 +92,7 @@ export function AlertContextProvider({ children }) {
               <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                 {alert.message
                   ? alert.message
-                  : "Are you sure you want to do this action?"}
+                  : 'Are you sure you want to do this action?'}
               </h3>
               <button
                 data-modal-toggle="popup-modal"
@@ -108,12 +108,12 @@ export function AlertContextProvider({ children }) {
                 className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                 onClick={handleDenied}
               >
-                {alert.denied ? alert.denied : "No, cancel"}
+                {alert.denied ? alert.denied : 'No, cancel'}
               </button>
             </div>
           </div>
         </div>
       </div>
     </AlertContext.Provider>
-  );
+  )
 }
