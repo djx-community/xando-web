@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import AppTitle from '../../components/app-title/AppTitle'
-import HomeFooter from '../../components/home-footer/HomeFooter'
-import MainMenu from '../../components/main-menu/MainMenu'
 import UserProfile from '../../components/user-profile/UserProfile'
+import MainMenu from '../../components/menus/main-menu/MainMenu'
+import HomeFooter from '../../components/footers/home-footer/HomeFooter'
 function PageUserHome () {
   const [profile] = useState({
     username: 'John Doe',

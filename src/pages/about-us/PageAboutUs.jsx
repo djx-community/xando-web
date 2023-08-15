@@ -2,7 +2,7 @@ import React from 'react'
 import AboutUsCard from '../../components/about-us-card/AboutUsCard'
 import AppTitle from '../../components/app-title/AppTitle'
 import AboutUsDeveloperCard from '../../components/about-us-card/AboutUSDeveloperCard'
-import HomeFooter from '../../components/home-footer/HomeFooter'
+import HomeFooter from '../../components/footers/home-footer/HomeFooter'
 
 export default function PageAboutUs () {
   // Logo takeing into variable for passing into component
@@ -56,7 +56,7 @@ export default function PageAboutUs () {
           })}
         </div>
       </div>
-      <HomeFooter/>
+      <HomeFooter />
     </section>
   )
 }

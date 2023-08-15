@@ -1,6 +1,6 @@
 import React from 'react'
-import pages from '../../constants/pages'
-import MenuButton from '../main-menu/menu-button/MenuButton'
+import pages from '../../../constants/pages'
+import MenuButton from '../../buttons/menu-button/MenuButton'
 
 function ExtrasMenu () {
   return (
