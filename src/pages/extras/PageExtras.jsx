@@ -5,9 +5,11 @@ import BackToHomeButtonFooter from '../../components/back-to-home-button-footer/
 
 function PageExtras () {
   return (
-        <div>
+        <div className="flex flex-col h-screen">
             <AppTitle title={'Extras'} />
-            <ExtrasMenu />
+            <section className="flex flex-1 justify-center items-center">
+                <ExtrasMenu />
+            </section>
             <BackToHomeButtonFooter />
         </div>
   )
