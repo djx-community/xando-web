@@ -2,6 +2,7 @@ import React from 'react'
 import AppTitle from '../../../components/app-title/AppTitle'
 import AboutUsDeveloperCard from '../../../components/about-us-card/AboutUSDeveloperCard'
 import HomeFooter from '../../../components/footers/home-footer/HomeFooter'
+import BackButton from '../../../components/buttons/back-button/BackButton'
 
 export default function PageAboutUs () {
   // Logo takeing into variable for passing into component
@@ -52,6 +53,7 @@ export default function PageAboutUs () {
         </div>
       </div>
       <HomeFooter />
+      <BackButton />
     </section>
   )
 }
