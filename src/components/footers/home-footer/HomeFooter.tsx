@@ -1,7 +1,7 @@
 import React from 'react'
 import FooterButton from '../../buttons/footer-button/FooterButton'
 
-function HomeFooter () {
+const HomeFooter: React.FunctionComponent = () => {
   return (
     <footer className='absolute bottom-4 left-4'>
       <FooterButton text={'Report Bug'} path={'/'} />

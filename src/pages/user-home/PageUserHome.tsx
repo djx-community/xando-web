@@ -15,8 +15,8 @@ function PageUserHome () {
         left={false}
         edit={true}
         opponent={false}
-        userName={profile && profile.username}
-        userId={profile && profile.userId}
+        username={profile?.username}
+        userId={profile?.userId}
       />
       <section className="flex flex-1 justify-center items-center">
         <MainMenu />

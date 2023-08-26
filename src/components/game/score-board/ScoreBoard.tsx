@@ -1,7 +1,17 @@
 import React from 'react'
 import './ScoreBoard.css'
 
-function ScoreBoard ({ userScore, opponentScore, bestOf }) {
+interface ScoreBoardProps {
+    userScore: number
+    opponentScore: number
+    bestOf: number
+}
+
+const ScoreBoard: React.FunctionComponent<ScoreBoardProps> = ({
+    userScore,
+    opponentScore,
+    bestOf
+}) => {
   return (
         <section className="md:pt-3 pt-24 flex justify-center align-middle">
             <div className="flex-col">

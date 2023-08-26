@@ -1,7 +1,17 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { CSSProperties } from 'react'
+import { To, useNavigate } from 'react-router-dom'
 
-function FooterButton ({ text, path, color }) {
+interface FooterButtonProps {
+  text: string
+  path: To
+  color?: CSSProperties['backgroundColor']
+}
+
+const FooterButton: React.FunctionComponent<FooterButtonProps> = ({
+  text,
+  path,
+  color
+}) => {
   const navigate = useNavigate()
   const handleButtonClick = () => {
     navigate(path)

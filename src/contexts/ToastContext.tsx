@@ -1,10 +1,14 @@
-import React, { createContext, useState, useEffect, useCallback } from 'react'
-const ToastContext = createContext()
+import React from 'react'
+const ToastContext = React.createContext({})
 export default ToastContext
 
-export function ToastContextProvider ({ children }) {
-  const [toasts, setToasts] = useState([])
-  useEffect(() => {
+interface ToastContextProviderProps {
+  children: React.ReactNode
+}
+
+export const ToastContextProvider: React.FunctionComponent<ToastContextProviderProps> = ({ children }) => {
+  const [toasts, setToasts] = React.useState([])
+  React.useEffect(() => {
     if (toasts.length > 0) {
       const timer = setTimeout(
         () => setToasts((toasts) => toasts.slice(1)),
@@ -14,8 +18,8 @@ export function ToastContextProvider ({ children }) {
     }
   }, [toasts])
 
-  const addToast = useCallback(
-    (toast) => {
+  const addToast = React.useCallback(
+    (toast: any) => {
       setToasts((toasts) => [...toasts, toast])
     },
     [setToasts]

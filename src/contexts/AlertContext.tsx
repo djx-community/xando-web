@@ -1,11 +1,15 @@
-import React, { createContext, useState, useCallback } from 'react'
-const AlertContext = createContext()
+import React from 'react'
+const AlertContext = React.createContext({})
 export default AlertContext
 
-export function AlertContextProvider ({ children }) {
-  const [alert, setAlert] = useState({})
+interface AlertContextProviderProps {
+  children: React.ReactNode
+}
+
+export const AlertContextProvider: React.FunctionComponent<AlertContextProviderProps> = ({ children }) => {
+  const [alert, setAlert] = React.useState({})
   //   Callback function to set alert
-  const addAlert = useCallback(
+  const addAlert = React.useCallback(
     (alert) => {
       setAlert(alert)
       if (alert.open) {

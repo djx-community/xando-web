@@ -1,4 +1,4 @@
-const pages = {
+export const PAGES = {
   HOME: '/',
   PLAY_WITH_FRIEND: '/play-with-friend',
   OFFLINE_GAME: '/play-offline',
@@ -6,5 +6,3 @@ const pages = {
   HOW_TO_PLAY: '/how-to-play',
   ABOUT_US: '/about-us'
 }
-
-export default pages

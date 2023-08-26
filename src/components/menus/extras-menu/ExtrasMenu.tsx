@@ -1,20 +1,20 @@
 import React from 'react'
-import pages from '../../../constants/pages'
+import { PAGES } from '../../../constants/pages'
 import MenuButton from '../../buttons/menu-button/MenuButton'
 
-function ExtrasMenu () {
+const ExtrasMenu: React.FunctionComponent = () => {
   return (
     <section className="pt-12 flex justify-center align-middle">
       <div className="flex-col">
         <MenuButton
           position={'top'}
           name={'How To Play'}
-          path={pages.HOW_TO_PLAY}
+          path={PAGES.HOW_TO_PLAY}
         />
         <MenuButton
           position={'bottom'}
           name={'About Us'}
-          path={pages.ABOUT_US}
+          path={PAGES.ABOUT_US}
         />
       </div>
     </section>

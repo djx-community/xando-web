@@ -1,6 +1,16 @@
 import React from 'react'
 // Developer details card component
-export default function AboutUsDeveloperCard ({ name, icon, url }) {
+interface AboutUsDeveloperCardProps {
+  name: string
+  icon: React.ReactNode
+  url: string
+}
+
+const AboutUsDeveloperCard: React.FunctionComponent<AboutUsDeveloperCardProps> = ({
+  name,
+  icon,
+  url
+}) => {
   return (
     <div className="p-4 flex items-center">
       <h5 className="md:text-xl text-lg w-full">{name}</h5>
@@ -10,3 +20,5 @@ export default function AboutUsDeveloperCard ({ name, icon, url }) {
     </div>
   )
 }
+
+export default AboutUsDeveloperCard

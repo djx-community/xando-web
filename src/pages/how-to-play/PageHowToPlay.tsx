@@ -1,7 +1,7 @@
 import React from 'react'
 import BackButton from '../../components/buttons/back-button/BackButton'
 
-function PageHowToPlay () {
+const PageHowToPlay: React.FunctionComponent = () => {
   return (
     <div>PageHowToPlay
       <BackButton />

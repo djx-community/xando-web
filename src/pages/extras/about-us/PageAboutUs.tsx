@@ -4,7 +4,7 @@ import AboutUsDeveloperCard from '../../../components/about-us-card/AboutUSDevel
 import HomeFooter from '../../../components/footers/home-footer/HomeFooter'
 import BackButton from '../../../components/buttons/back-button/BackButton'
 
-export default function PageAboutUs () {
+const PageAboutUs: React.FunctionComponent = () => {
   // Logo takeing into variable for passing into component
   const gitHub = (
     <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/36/6A00FF/external-Github-social-media-tanah-basah-basic-outline-tanah-basah.png" />
@@ -57,3 +57,5 @@ export default function PageAboutUs () {
     </section>
   )
 }
+
+export default PageAboutUs

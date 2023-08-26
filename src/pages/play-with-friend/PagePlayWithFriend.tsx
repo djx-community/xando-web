@@ -4,7 +4,7 @@ import ButtonCopyId from '../../components/buttons/play-with-friend/copy-id-butt
 import ButtonEnterId from '../../components/buttons/play-with-friend/enter-id-button/ButtonEnterId'
 import BackToHomeButtonFooter from '../../components/buttons/back-to-home-button-footer/BackToHomeButtonFooter'
 
-function PagePlayWithFriend () {
+const PagePlayWithFriend: React.FunctionComponent = () => {
   return (
     <div className="flex flex-col h-screen">
       <AppTitle title={'Play with Friend'} />

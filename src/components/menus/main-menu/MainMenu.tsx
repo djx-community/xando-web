@@ -1,22 +1,22 @@
 import React from 'react'
-import pages from '../../../constants/pages'
+import { PAGES } from '../../../constants/pages'
 import MenuButton from '../../buttons/menu-button/MenuButton'
 
-function MainMenu () {
+const MainMenu: React.FunctionComponent = () => {
   return (
     <div className="h-fit">
-      <MenuButton position={'top'} name={'Quick Play'} path={pages.HOME} />
+      <MenuButton position={'top'} name={'Quick Play'} path={PAGES.HOME} />
       <MenuButton
         position={'middle'}
         name={'Play With Friend'}
-        path={pages.PLAY_WITH_FRIEND}
+        path={PAGES.PLAY_WITH_FRIEND}
       />
       <MenuButton
         position={'middle'}
         name={'Play Offline'}
-        path={pages.OFFLINE_GAME}
+        path={PAGES.OFFLINE_GAME}
       />
-      <MenuButton position={'bottom'} name={'Extras'} path={pages.EXTRAS} />
+      <MenuButton position={'bottom'} name={'Extras'} path={PAGES.EXTRAS} />
     </div>
   )
 }

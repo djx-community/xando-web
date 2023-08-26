@@ -3,7 +3,7 @@ import AppTitle from '../../components/app-title/AppTitle'
 import BackToHomeButtonFooter from '../../components/buttons/back-to-home-button-footer/BackToHomeButtonFooter'
 import ExtrasMenu from '../../components/menus/extras-menu/ExtrasMenu'
 
-function PageExtras () {
+const PageExtras: React.FunctionComponent = () => {
   return (
     <div className="flex flex-col h-screen">
       <AppTitle title={'Extras'} />

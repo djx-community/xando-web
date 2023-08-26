@@ -1,9 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import sound from '../../../assets/lineDraw.mp3'
+import React from 'react'
+import lineDrawMp3 from '../../../assets/lineDraw.mp3'
 import './DrawLine.css'
 
-function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {
-  const [matrix, setMatrix] = useState([
+interface OfflineMatchAreaProps {
+  turn: boolean
+  setTurn: React.Dispatch<React.SetStateAction<boolean>>
+  setScores: React.Dispatch<React.SetStateAction<Scores>>
+  setWinner: React.Dispatch<React.SetStateAction<string | null>>
+  setLap: React.Dispatch<React.SetStateAction<number>>
+}
+
+export interface Scores {
+  userScore: number
+  opponentScore: number
+}
+
+export interface UserProfileType {
+  username: string
+  userId: string
+}
+
+interface MatrixSingleCell {
+  component: string | null // to be changed to React.ReactNode
+  clicked: boolean
+}
+
+interface Cell {
+  row: number
+  col: number
+}
+
+interface SingleGameWinnerProps {
+  c1: Cell
+  c2: Cell
+  c3: Cell
+  component: 'X' | 'O' // to be changed to React.ReactNode
+}
+
+
+const OfflineMatchArea: React.FunctionComponent<OfflineMatchAreaProps> = ({ turn, setTurn, setScores, setWinner, setLap }) => {
+  const [matrix, setMatrix] = React.useState<MatrixSingleCell[][]>([
     [
       { component: null, clicked: false },
       { component: null, clicked: false },
@@ -20,17 +56,17 @@ function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {
       { component: null, clicked: false }
     ]
   ])
-  const [countTurn, setCountTurn] = useState(0)
-  useEffect(() => {
+  const [countTurn, setCountTurn] = React.useState<number>(0)
+  const square: NodeListOf<Element> = document.querySelectorAll('.grid-area button') // to take each cell object to draw line
+  const matchArea = document.getElementById('match-area') as HTMLElement// to take match area object to shake
+  const audio: HTMLAudioElement = new Audio(lineDrawMp3) // to create object of line drawing sound effect
+  React.useEffect(() => {
     if (countTurn >= 5 && countTurn < 9) {
-      const square = document.querySelectorAll('.grid-area button') // to take each cell object to draw line
-      const matchArea = document.getElementById('match-area')// to take match area object to shake
-      const audio = new Audio(sound) // to create object of line drawing sound effect
 
       // start to check if there is a winner
-      checkRows(square, audio, matchArea) // check rows
-      checkColumns(square, audio, matchArea) // check columns
-      checkDiagonals(square, audio, matchArea) // check diagonals
+      checkRows() // check rows
+      checkColumns() // check columns
+      checkDiagonals() // check diagonals
     } else if (countTurn === 9) {
       alert('Draw') // winner to be set as "DRAW"
       setLap((lap) => lap + 1)
@@ -38,7 +74,7 @@ function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {
     }
   }, [countTurn])
 
-  const checkRows = (square, audio, matchArea) => {
+  const checkRows = () => {
     // ___________ For draw line through rows _______________________________________
     let rowOne = false
     let rowTwo = false
@@ -104,7 +140,7 @@ function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {
     }
   }
 
-  const checkColumns = (square, audio, matchArea) => {
+  const checkColumns = () => {
     // ___________ For draw line through columns _______________________________________
     let columnOne = false
     let columnTwo = false
@@ -171,7 +207,7 @@ function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {
     }
   }
 
-  const checkDiagonals = (square, audio, matchArea) => {
+  const checkDiagonals = () => {
     if (
       matrix[0][0].component === matrix[1][1].component &&
       matrix[1][1].component === matrix[2][2].component
@@ -228,7 +264,7 @@ function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {
     }
   }
 
-  const singleGameWinner = async ({ c1, c2, c3, component }) => {
+  const singleGameWinner = async ({ c1, c2, c3, component }: SingleGameWinnerProps) => {
     // doing animation
     if (component === 'X') {
       setWinner('X wins!!!')
@@ -278,16 +314,12 @@ function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {
                 return (
                   <button
                     key={rowIndex + 'x' + cellIndex}
-                    className={`md:w-28 w-28 md:h-28 h-28 block p-6 max-w-sm border-white font-bold ${
-                      !cell.clicked &&
+                    className={`md:w-28 w-28 md:h-28 h-28 block p-6 max-w-sm border-white font-bold ${!cell.clicked &&
                       'hover:bg-gray-100 dark:hover:bg-blue-800'
-                    }  from-slate-900 to-blue-900 text-3xl ${
-                      rowIndex === 0 && 'border-b-4'
-                    } ${rowIndex === 1 && 'border-y-4'} ${
-                      rowIndex === 2 && 'border-t-4'
-                    } ${cellIndex === 0 && 'border-r-4'} ${
-                      cellIndex === 1 && 'border-x-4'
-                    } ${cellIndex === 2 && 'border-l-4'}`}
+                      }  from-slate-900 to-blue-900 text-3xl ${rowIndex === 0 && 'border-b-4'
+                      } ${rowIndex === 1 && 'border-y-4'} ${rowIndex === 2 && 'border-t-4'
+                      } ${cellIndex === 0 && 'border-r-4'} ${cellIndex === 1 && 'border-x-4'
+                      } ${cellIndex === 2 && 'border-l-4'}`}
                     disabled={cell.clicked}
                     onClick={() => {
                       setMatrix((prevMatrix) => {
@@ -313,10 +345,7 @@ function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {
     </section>
   )
 }
-function vibrate () {
-  // To check that is vibration API supported
-  if (navigator.vibrate) {
-    window.navigator.vibrate(400)
-  }
+function vibrate() {
+  window.navigator.vibrate?.(400)
 }
 export default OfflineMatchArea

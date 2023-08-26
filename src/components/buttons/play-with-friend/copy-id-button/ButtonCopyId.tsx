@@ -1,7 +1,11 @@
 import { DocumentDuplicateIcon } from '@heroicons/react/24/outline'
 import React, { useState } from 'react'
 
-function ButtonCopyId ({ id }) {
+interface ButtonCopyIdProps {
+  id: string
+}
+
+const ButtonCopyId: React.FunctionComponent<ButtonCopyIdProps> = ({ id }) => {
   const [buttonClicked, setButtonClicked] = useState(false)
   const handleButtonClick = () => {
     // copy id to clipboard

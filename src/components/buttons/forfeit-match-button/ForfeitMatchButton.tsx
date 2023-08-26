@@ -1,6 +1,10 @@
 import React from 'react'
 
-function ForfeitMatchButton ({ handleOnClick }) {
+interface ForfeitMatchButtonProps {
+  handleOnClick: () => void
+}
+
+const ForfeitMatchButton: React.FunctionComponent<ForfeitMatchButtonProps> = ({ handleOnClick }) => {
   return (
     <div>
       <button className="bg-sky-900 hover:bg-sky-800 text-white text-sm shadow-xl shadow-blue-800
