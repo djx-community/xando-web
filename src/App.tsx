@@ -11,7 +11,6 @@ import PageExtras from './pages/extras/PageExtras'
 import PageHowToPlay from './pages/how-to-play/PageHowToPlay'
 import { BackDropContextProvider } from './contexts/BackDropContext'
 import PageAboutUs from './pages/extras/about-us/PageAboutUs'
-import AboutUsDeveloperCard from './components/about-us-card/AboutUSDeveloperCard'
 
 function App () {
   return (
@@ -29,7 +28,6 @@ function App () {
               <Route path={PAGES.EXTRAS} element={<PageExtras />} />
               <Route path={PAGES.HOW_TO_PLAY} element={<PageHowToPlay />} />
               <Route path={PAGES.ABOUT_US} element={<PageAboutUs />} />
-              <AboutUsDeveloperCard name={''} icon={undefined} url={''} />
             </Routes>
           </div>
         </BackDropContextProvider>
