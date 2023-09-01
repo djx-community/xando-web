@@ -1,23 +1,48 @@
-import React, { createContext, useState, useCallback } from 'react'
-const BackDropContext = createContext()
+import React from 'react'
+
+// Define the type for the backdrop object
+interface Backdrop {
+  open: boolean
+  icon: string
+  message: string
+}
+
+// Define the context type
+interface BackdropContextType {
+  openBackDrop: (backDrop: Backdrop) => void
+  closeBackDrop: () => void
+}
+
+const BackDropContext = React.createContext<BackdropContextType | undefined>(undefined)
+
 export default BackDropContext
 
-export function BackDropContextProvider ({ children }) {
-  const [backDrop, setBackDrop] = useState({})
-  //   Callback function to set alert
-  const openBackDrop = useCallback(
-    (backDrop) => {
-      setBackDrop(backDrop)
-      if (backDrop.open) {
-        document.getElementById('backdrop').classList.remove('hidden')
-      } else {
-        closeBackDrop()
+// Define the props for the BackDropContextProvider component
+interface BackDropContextProviderProps {
+  children: React.ReactNode
+}
+
+export function BackDropContextProvider({ children }: BackDropContextProviderProps): JSX.Element {
+  const [backDrop, setBackDrop] = React.useState<Backdrop>({ open: false, icon: '', message: '' })
+
+  // Callback function to set alert
+  const openBackDrop = React.useCallback((backDrop: Backdrop) => {
+    setBackDrop(backDrop)
+    if (backDrop.open) {
+      const backdropElement = document.getElementById('backdrop')
+      if (backdropElement) {
+        backdropElement.classList.remove('hidden')
       }
-    },
-    [setBackDrop]
-  )
+    } else {
+      closeBackDrop()
+    }
+  }, [setBackDrop])
+
   const closeBackDrop = () => {
-    document.getElementById('backdrop').classList.add('hidden')
+    const backdropElement = document.getElementById('backdrop')
+    if (backdropElement) {
+      backdropElement.classList.add('hidden')
+    }
   }
 
   return (

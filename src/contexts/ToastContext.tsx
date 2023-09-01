@@ -1,32 +1,45 @@
 import React from 'react'
-const ToastContext = React.createContext({})
+
+// Define the type for a toast item
+interface ToastItem {
+  name: string
+  message: string
+  request?: boolean
+}
+
+// Define the type for the context
+interface ToastContextType {
+  addToast: (toast: ToastItem) => void
+}
+
+// Create the ToastContext
+const ToastContext = React.createContext<ToastContextType | undefined>(undefined)
+
 export default ToastContext
 
+// Define the props for the ToastContextProvider component
 interface ToastContextProviderProps {
   children: React.ReactNode
 }
 
-export const ToastContextProvider: React.FunctionComponent<ToastContextProviderProps> = ({ children }) => {
-  const [toasts, setToasts] = React.useState([])
+export const ToastContextProvider: React.FC<ToastContextProviderProps> = ({ children }) => {
+  const [toasts, setToasts] = React.useState<ToastItem[]>([])
+
+  // UseEffect to remove the toast after 3 seconds
   React.useEffect(() => {
     if (toasts.length > 0) {
-      const timer = setTimeout(
-        () => setToasts((toasts) => toasts.slice(1)),
-        3000
-      )
+      const timer = setTimeout(() => setToasts((toasts) => toasts.slice(1)), 3000)
       return () => clearTimeout(timer)
     }
   }, [toasts])
 
-  const addToast = React.useCallback(
-    (toast: any) => {
-      setToasts((toasts) => [...toasts, toast])
-    },
-    [setToasts]
-  )
+  // Function to add a new toast
+  const addToast = React.useCallback((toast: ToastItem) => {
+    setToasts((toasts) => [...toasts, toast])
+  }, [setToasts])
 
   return (
-    <ToastContext.Provider value={addToast}>
+    <ToastContext.Provider value={{ addToast }}>
       {children}
       {toasts.map((toast) => (
         <div

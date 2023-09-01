@@ -1,47 +1,77 @@
 import React from 'react'
-const AlertContext = React.createContext({})
+
+// Define the type for an alert item
+interface AlertItem {
+  message?: string
+  accept?: string
+  denied?: string
+  open: boolean
+  action: () => void
+  exit: () => void
+}
+
+// Define the type for the context
+interface AlertContextType {
+  addAlert: (alert: AlertItem) => void
+}
+
+// Create the AlertContext
+const AlertContext = React.createContext<AlertContextType | undefined>(undefined)
+
 export default AlertContext
 
+// Define the props for the AlertContextProvider component
 interface AlertContextProviderProps {
   children: React.ReactNode
 }
 
-export const AlertContextProvider: React.FunctionComponent<AlertContextProviderProps> = ({ children }) => {
-  const [alert, setAlert] = React.useState({})
-  //   Callback function to set alert
-  const addAlert = React.useCallback(
-    (alert) => {
-      setAlert(alert)
-      if (alert.open) {
-        const element = document.getElementById('popup-modal')
-        element.classList.remove('hidden')
-        element.classList.add('flex')
+export const AlertContextProvider: React.FC<AlertContextProviderProps> = ({ children }) => {
+  const [alert, setAlert] = React.useState<AlertItem>({ open: false, action: () => { }, exit: () => { } })
+  const modalElement: HTMLElement | null = document.getElementById('popup-modal')
+
+  // Callback function to set alert
+  const addAlert = React.useCallback((alert: AlertItem) => {
+    setAlert(alert)
+    if (alert.open) {
+      if (modalElement) {
+        modalElement.classList.remove('hidden')
+        modalElement.classList.add('flex')
       }
-    },
-    [setAlert]
-  )
+    }
+  }, [])
+
   const closeAlert = () => {
-    const element = document.getElementById('popup-modal')
-    element.classList.remove('flex')
-    element.classList.add('hidden')
+    if (modalElement) {
+      modalElement.classList.remove('flex')
+      modalElement.classList.add('hidden')
+    }
   }
-  //   Accepts an alert object and sets it to the state
+
+  // Accepts an alert object and performs the action
   const handleAccept = () => {
     closeAlert()
     alert.action()
   }
 
-  //   Closes the alert and performs the action
+  // Closes the alert and performs the exit action
   const handleDenied = () => {
     alert.exit()
     closeAlert()
   }
+
+  React.useEffect(() => {
+    if (alert.open) {
+      const timer = setTimeout(closeAlert, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [alert.open])
+
   return (
-    <AlertContext.Provider value={addAlert}>
+    <AlertContext.Provider value={{ addAlert }}>
       {children}
       <div
         id="popup-modal"
-        tabIndex="-2"
+        tabIndex={-2}
         className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full justify-center items-center"
         aria-hidden="true"
       >
@@ -69,9 +99,10 @@ export const AlertContextProvider: React.FunctionComponent<AlertContextProviderP
               <span
                 className="sr-only"
                 onClick={() => {
-                  document
-                    .getElementById('popup-modal')
-                    .classList.add('hidden')
+                  if (modalElement) {
+                    modalElement
+                      .classList.add('hidden')
+                  }
                 }}
               >
                 Close modal
