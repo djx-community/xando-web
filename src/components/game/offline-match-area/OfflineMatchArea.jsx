@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import sound from '../../assets/lineDraw.mp3'
+import sound from '../../../assets/lineDraw.mp3'
 import './DrawLine.css'
 
 function OfflineMatchArea ({ turn, setTurn, setScores, setWinner, setLap }) {

@@ -1,8 +1,11 @@
 import React from 'react'
+import BackButton from '../../components/buttons/back-button/BackButton'
 
 function PageHowToPlay () {
   return (
-    <div>PageHowToPlay</div>
+    <div>PageHowToPlay
+      <BackButton />
+    </div>
   )
 }
 

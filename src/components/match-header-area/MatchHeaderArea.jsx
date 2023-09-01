@@ -1,5 +1,5 @@
 import React from 'react'
-import ScoreBoard from '../score-board/ScoreBoard'
+import ScoreBoard from '../game/score-board/ScoreBoard'
 import UserProfile from '../user-profile/UserProfile'
 
 function MatchHeaderArea ({ scores, userProfile, opponentProfile, bestOf }) {

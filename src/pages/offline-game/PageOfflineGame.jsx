@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import AppTitle from '../../components/app-title/AppTitle'
-import ForfeitMatchFooter from '../../components/forfeit-match-footer/ForfeitMatchFooter'
 import MatchHeaderArea from '../../components/match-header-area/MatchHeaderArea'
-import OfflineMatchArea from '../../components/offline-match-area/OfflineMatchArea'
-import TurnIndicator from '../../components/turn-indicator/TurnIndicator'
-import WinnerComponent from '../../components/winner-component/WinnerComponent'
+import OfflineMatchArea from '../../components/game/offline-match-area/OfflineMatchArea'
+import TurnIndicator from '../../components/game/turn-indicator/TurnIndicator'
+import WinnerComponent from '../../components/game/winner-component/WinnerComponent'
+import ForfeitMatchFooter from '../../components/footers/forfeit-match-footer/ForfeitMatchFooter'
 
 function PageOfflineGame () {
   const [scores, setScores] = useState({
@@ -51,7 +51,7 @@ function PageOfflineGame () {
         <OfflineMatchArea turn={turn} setTurn={setTurn} setScores={setScores} setWinner={setPreviousWinner} setLap={setLap} />
         <WinnerComponent winner={previousWinner} />
       </div>
-      <ForfeitMatchFooter />
+      <ForfeitMatchFooter handleOnClick />
       {/* <audio controls autoPlay loop>
         <source src='sword-from-sheath-6910.ogg' type='audio/ogg'/>
       </audio> */}

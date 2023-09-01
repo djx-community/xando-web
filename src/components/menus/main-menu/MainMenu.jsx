@@ -1,6 +1,6 @@
 import React from 'react'
-import pages from '../../constants/pages'
-import MenuButton from './menu-button/MenuButton'
+import pages from '../../../constants/pages'
+import MenuButton from '../../buttons/menu-button/MenuButton'
 
 function MainMenu () {
   return (

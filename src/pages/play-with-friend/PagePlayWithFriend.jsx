@@ -1,8 +1,8 @@
 import React from 'react'
 import AppTitle from '../../components/app-title/AppTitle'
-import BackToHomeButtonFooter from '../../components/back-to-home-button-footer/BackToHomeButtonFooter'
-import ButtonCopyId from '../../components/play-with-friend/copy-id-button/ButtonCopyId'
-import ButtonEnterId from '../../components/play-with-friend/enter-id-button/ButtonEnterId'
+import ButtonCopyId from '../../components/buttons/play-with-friend/copy-id-button/ButtonCopyId'
+import ButtonEnterId from '../../components/buttons/play-with-friend/enter-id-button/ButtonEnterId'
+import BackToHomeButtonFooter from '../../components/buttons/back-to-home-button-footer/BackToHomeButtonFooter'
 
 function PagePlayWithFriend () {
   return (
