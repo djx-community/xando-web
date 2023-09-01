@@ -1,0 +1,1 @@
+declare module '*.mp3'; // used for importing mp3 files
