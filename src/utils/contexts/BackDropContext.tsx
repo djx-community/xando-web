@@ -22,7 +22,7 @@ interface BackDropContextProviderProps {
   children: React.ReactNode
 }
 
-export function BackDropContextProvider({ children }: BackDropContextProviderProps): JSX.Element {
+export const BackDropContextProvider: React.FC<BackDropContextProviderProps> = ({ children }) => {
   const [backDrop, setBackDrop] = React.useState<Backdrop>({ open: false, icon: '', message: '' })
 
   // Callback function to set alert

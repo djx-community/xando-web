@@ -3,7 +3,7 @@ import AppTitle from '../../components/app-title/AppTitle'
 import UserProfile from '../../components/user-profile/UserProfile'
 import MainMenu from '../../components/menus/main-menu/MainMenu'
 import HomeFooter from '../../components/footers/home-footer/HomeFooter'
-function PageUserHome () {
+const PageUserHome: React.FC = () => {
   const [profile] = useState({
     username: 'John Doe',
     userId: '123456789'

@@ -12,7 +12,7 @@ import PageHowToPlay from './pages/how-to-play/PageHowToPlay'
 import { BackDropContextProvider } from './utils/contexts/BackDropContext'
 import PageAboutUs from './pages/extras/about-us/PageAboutUs'
 
-function App () {
+const App: React.FC = () => {
   return (
     <ToastContextProvider>
       <AlertContextProvider>
