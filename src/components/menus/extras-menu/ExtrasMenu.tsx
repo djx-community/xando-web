@@ -1,5 +1,5 @@
 import React from 'react'
-import { PAGES } from '../../../constants/pages'
+import { PAGES } from '../../../utils/constants/pages'
 import MenuButton from '../../buttons/menu-button/MenuButton'
 
 const ExtrasMenu: React.FunctionComponent = () => {
