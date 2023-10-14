@@ -26,7 +26,7 @@ const PageAboutUs: React.FunctionComponent = () => {
     },
     {
       name: 'Mubashir Angathil',
-      url: 'https://github.com/MubashirAngathil'
+      url: 'https://github.com/mubashir-angathil'
     }
   ]
   return (
