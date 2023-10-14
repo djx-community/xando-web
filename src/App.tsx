@@ -17,7 +17,7 @@ const App: React.FC = () => {
     <ToastContextProvider>
       <AlertContextProvider>
         <BackDropContextProvider>
-          <div className="App bg-white dark:bg-gradient-to-r from-slate-900 to-blue-900 dark:text-white h-screen">
+          <div className="App bg-white dark:bg-gradient-to-b from-slate-900 to-blue-900 dark:text-white h-screen">
             <Routes>
               <Route path={PAGES.HOME} element={<PageUserHome />} />
               <Route
