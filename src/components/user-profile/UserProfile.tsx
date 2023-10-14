@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { UserCircleIcon } from '@heroicons/react/20/solid/'
+import { UserCircleIcon } from '@heroicons/react/20/solid'
 
 interface UserProfileProps {
   offline?: boolean
