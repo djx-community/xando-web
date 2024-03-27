@@ -68,7 +68,13 @@ const OfflineMatchArea: React.FunctionComponent<OfflineMatchAreaProps> = ({ turn
       checkColumns() // check columns
       checkDiagonals() // check diagonals
     } else if (countTurn === 9) {
-      alert('Draw') // winner to be set as "DRAW"
+      let win = false;
+      // start to check if there is a winner
+      win = win || checkRows() // check rows
+      win = win || checkColumns() // check columns
+      win = win || checkDiagonals() // check diagonals
+      if (!win)
+        setWinner('DRAW !!')
       setLap((lap) => lap + 1)
       resetGame()
     }
@@ -76,135 +82,151 @@ const OfflineMatchArea: React.FunctionComponent<OfflineMatchAreaProps> = ({ turn
 
   const checkRows = () => {
     // ___________ For draw line through rows _______________________________________
-    let rowOne = false
-    let rowTwo = false
-    let rowThree = false
+    // const rowOne = false
+    // const rowTwo = false
+    // const rowThree = false
 
-    rowOne =
-      matrix[0][0].component === matrix[0][1].component &&
-      matrix[0][0].component === matrix[0][2].component &&
-      matrix[0][0].component !== null
-    rowTwo =
-      matrix[1][0].component === matrix[1][1].component &&
-      matrix[1][0].component === matrix[1][2].component &&
-      matrix[1][0].component !== null
-    rowThree =
-      matrix[2][0].component === matrix[2][1].component &&
-      matrix[2][0].component === matrix[2][2].component &&
-      matrix[2][0].component !== null
+    // rowOne =
+    //   matrix[0][0].component === matrix[0][1].component &&
+    //   matrix[0][0].component === matrix[0][2].component &&
+    //   matrix[0][0].component !== null
+    // rowTwo =
+    //   matrix[1][0].component === matrix[1][1].component &&
+    //   matrix[1][0].component === matrix[1][2].component &&
+    //   matrix[1][0].component !== null
+    // rowThree =
+    //   matrix[2][0].component === matrix[2][1].component &&
+    //   matrix[2][0].component === matrix[2][2].component &&
+    //   matrix[2][0].component !== null
 
-    if (rowOne) {
-      square[0].classList.add('horizontal')
-      square[1].classList.add('horizontal')
-      square[2].classList.add('horizontal')
-      audio.play() // to play the audio if match the first row
-      matchArea.classList.add('match-area')// to shake tha match area
-      vibrate() // to perform vibration
-    } else if (rowTwo) {
-      square[3].classList.add('horizontal')
-      square[4].classList.add('horizontal')
-      square[5].classList.add('horizontal')
-      audio.play() // to play the audio if match the second row
-      matchArea.classList.add('match-area')// to shake tha match area
-      vibrate() // to perform vibration
-    } else if (rowThree) {
-      square[6].classList.add('horizontal')
-      square[7].classList.add('horizontal')
-      square[8].classList.add('horizontal')
-      audio.play() // to play the audio if match the third row\
-      matchArea.classList.add('match-area')// to shake tha match area
-      vibrate() // to perform vibration
-    }
-    // ********************************************************************************
+    // Changing the above logic to for loop
     for (let i = 0; i < 3; i++) {
-      if (
-        matrix[i][0].component === matrix[i][1].component &&
-        matrix[i][1].component === matrix[i][2].component
-      ) {
-        if (matrix[i][0].component === 'X') {
-          singleGameWinner({
-            c1: { row: i, col: 0 },
-            c2: { row: i, col: 1 },
-            c3: { row: i, col: 2 },
-            component: 'X'
-          })
-        } else if (matrix[i][0].component === 'O') {
-          singleGameWinner({
-            c1: { row: i, col: 0 },
-            c2: { row: i, col: 1 },
-            c3: { row: i, col: 2 },
-            component: 'O'
-          })
-        }
+      if (matrix[i][0].component === matrix[i][1].component && matrix[i][1].component === matrix[i][2].component && matrix[i][0].component !== null) {
+        square[3 * i].classList.add('horizontal')
+        square[3 * i + 1].classList.add('horizontal')
+        square[3 * i + 2].classList.add('horizontal')
+        audio.play() // to play the audio if match the first row
+        matchArea.classList.add('match-area')// to shake tha match area
+        vibrate() // to perform vibration
+        singleGameWinner({
+          c1: { row: i, col: 0 },
+          c2: { row: i, col: 1 },
+          c3: { row: i, col: 2 },
+          component: matrix[i][0].component as 'X' | 'O'
+        })
+        return true
       }
     }
+    return false
+    // ********************************************************************************
+    // for (let i = 0; i < 3; i++) {
+    //   if (
+    //     matrix[i][0].component === matrix[i][1].component &&
+    //     matrix[i][1].component === matrix[i][2].component
+    //   ) {
+    //     if (matrix[i][0].component === 'X') {
+    //       singleGameWinner({
+    //         c1: { row: i, col: 0 },
+    //         c2: { row: i, col: 1 },
+    //         c3: { row: i, col: 2 },
+    //         component: 'X'
+    //       })
+    //     } else if (matrix[i][0].component === 'O') {
+    //       singleGameWinner({
+    //         c1: { row: i, col: 0 },
+    //         c2: { row: i, col: 1 },
+    //         c3: { row: i, col: 2 },
+    //         component: 'O'
+    //       })
+    //     }
+    //   }
+    // }
   }
 
   const checkColumns = () => {
     // ___________ For draw line through columns _______________________________________
-    let columnOne = false
-    let columnTwo = false
-    let columnThree = false
+    // let columnOne = false
+    // let columnTwo = false
+    // let columnThree = false
 
-    columnOne =
-      matrix[0][0].component === matrix[1][0].component &&
-      matrix[0][0].component === matrix[2][0].component &&
-      matrix[0][0].component !== null
-    columnTwo =
-      matrix[0][1].component === matrix[1][1].component &&
-      matrix[0][1].component === matrix[2][1].component &&
-      matrix[0][1].component !== null
-    columnThree =
-      matrix[0][2].component === matrix[1][2].component &&
-      matrix[0][2].component === matrix[2][2].component &&
-      matrix[0][2].component !== null
+    // columnOne =
+    //   matrix[0][0].component === matrix[1][0].component &&
+    //   matrix[0][0].component === matrix[2][0].component &&
+    //   matrix[0][0].component !== null
+    // columnTwo =
+    //   matrix[0][1].component === matrix[1][1].component &&
+    //   matrix[0][1].component === matrix[2][1].component &&
+    //   matrix[0][1].component !== null
+    // columnThree =
+    //   matrix[0][2].component === matrix[1][2].component &&
+    //   matrix[0][2].component === matrix[2][2].component &&
+    //   matrix[0][2].component !== null
 
-    if (columnOne) {
-      square[0].classList.add('vertical')
-      square[3].classList.add('vertical')
-      square[6].classList.add('vertical')
-      audio.play() // to play the audio if match the first column
-      matchArea.classList.add('match-area')// to shake tha match area
-      vibrate() // to perform vibration
-    } else if (columnTwo) {
-      square[1].classList.add('vertical')
-      square[4].classList.add('vertical')
-      square[7].classList.add('vertical')
-      audio.play() // to play the audio if match the second column
-      matchArea.classList.add('match-area')// to shake tha match area
-      vibrate() // to perform vibration
-    } else if (columnThree) {
-      square[2].classList.add('vertical')
-      square[5].classList.add('vertical')
-      square[8].classList.add('vertical')
-      audio.play() // to play the audio if match the third column
-      matchArea.classList.add('match-area')// to shake tha match area
-      vibrate() // to perform vibration
-    }
-    // ********************************************************************************
-
+    // Changing the above logic to for loop
     for (let i = 0; i < 3; i++) {
-      if (
-        matrix[0][i].component === matrix[1][i].component ||
-        matrix[1][i].component === matrix[2][i].component
-      ) {
-        if (matrix[0][i].component === 'X') {
-          singleGameWinner({
-            c1: { row: i, col: 0 },
-            c2: { row: i, col: 1 },
-            c3: { row: i, col: 2 },
-            component: 'X'
-          })
-        } else if (matrix[0][i].component === 'O') {
-          singleGameWinner({
-            c1: { row: i, col: 0 },
-            c2: { row: i, col: 1 },
-            c3: { row: i, col: 2 },
-            component: 'O'
-          })
-        }
+      if (matrix[0][i].component === matrix[1][i].component && matrix[1][i].component === matrix[2][i].component && matrix[0][i].component !== null) {
+        square[i].classList.add('vertical')
+        square[i + 3].classList.add('vertical')
+        square[i + 6].classList.add('vertical')
+        audio.play() // to play the audio if match the first column
+        matchArea.classList.add('match-area')// to shake tha match area
+        vibrate() // to perform vibration
+        singleGameWinner({
+          c1: { row: 0, col: i },
+          c2: { row: 1, col: i },
+          c3: { row: 2, col: i },
+          component: matrix[0][i].component as 'X' | 'O'
+        })
+        return true
       }
     }
+    return false
+    // if (columnOne) {
+    //   square[0].classList.add('vertical')
+    //   square[3].classList.add('vertical')
+    //   square[6].classList.add('vertical')
+    //   audio.play() // to play the audio if match the first column
+    //   matchArea.classList.add('match-area')// to shake tha match area
+    //   vibrate() // to perform vibration
+    // } else if (columnTwo) {
+    //   square[1].classList.add('vertical')
+    //   square[4].classList.add('vertical')
+    //   square[7].classList.add('vertical')
+    //   audio.play() // to play the audio if match the second column
+    //   matchArea.classList.add('match-area')// to shake tha match area
+    //   vibrate() // to perform vibration
+    // } else if (columnThree) {
+    //   square[2].classList.add('vertical')
+    //   square[5].classList.add('vertical')
+    //   square[8].classList.add('vertical')
+    //   audio.play() // to play the audio if match the third column
+    //   matchArea.classList.add('match-area')// to shake tha match area
+    //   vibrate() // to perform vibration
+    // }
+    // ********************************************************************************
+
+    // for (let i = 0; i < 3; i++) {
+    //   if (
+    //     matrix[0][i].component === matrix[1][i].component ||
+    //     matrix[1][i].component === matrix[2][i].component
+    //   ) {
+    //     if (matrix[0][i].component === 'X') {
+    //       singleGameWinner({
+    //         c1: { row: i, col: 0 },
+    //         c2: { row: i, col: 1 },
+    //         c3: { row: i, col: 2 },
+    //         component: 'X'
+    //       })
+    //     } else if (matrix[0][i].component === 'O') {
+    //       singleGameWinner({
+    //         c1: { row: i, col: 0 },
+    //         c2: { row: i, col: 1 },
+    //         c3: { row: i, col: 2 },
+    //         component: 'O'
+    //       })
+    //     }
+    //   }
+    // }
   }
 
   const checkDiagonals = () => {
@@ -221,21 +243,13 @@ const OfflineMatchArea: React.FunctionComponent<OfflineMatchAreaProps> = ({ turn
       matchArea.classList.add('match-area')// to shake tha match area
       vibrate() // to perform vibration
       //* ***************************************************************
-      if (matrix[0][0].component === 'X') {
-        singleGameWinner({
-          c1: { row: 0, col: 0 },
-          c2: { row: 1, col: 1 },
-          c3: { row: 2, col: 2 },
-          component: 'X'
-        })
-      } else if (matrix[0][0].component === 'O') {
-        singleGameWinner({
-          c1: { row: 0, col: 0 },
-          c2: { row: 1, col: 1 },
-          c3: { row: 2, col: 2 },
-          component: 'O'
-        })
-      }
+      singleGameWinner({
+        c1: { row: 0, col: 0 },
+        c2: { row: 1, col: 1 },
+        c3: { row: 2, col: 2 },
+        component: matrix[0][0].component as 'X' | 'O'
+      })
+      return true
     } else if (
       matrix[0][2].component === matrix[1][1].component &&
       matrix[1][1].component === matrix[2][0].component
@@ -246,38 +260,45 @@ const OfflineMatchArea: React.FunctionComponent<OfflineMatchAreaProps> = ({ turn
       audio.play() // to play the audio if match the left diagonal
       matchArea.classList.add('match-area')// to shake tha match area
       vibrate() // to perform vibration
-      if (matrix[1][1].component === 'X') {
-        singleGameWinner({
-          c1: { row: 0, col: 2 },
-          c2: { row: 1, col: 1 },
-          c3: { row: 2, col: 0 },
-          component: 'X'
-        })
-      } else if (matrix[1][1].component === 'O') {
-        singleGameWinner({
-          c1: { row: 0, col: 2 },
-          c2: { row: 1, col: 1 },
-          c3: { row: 2, col: 0 },
-          component: 'O'
-        })
-      }
+      singleGameWinner({
+        c1: { row: 0, col: 2 },
+        c2: { row: 1, col: 1 },
+        c3: { row: 2, col: 0 },
+        component: matrix[0][2].component as 'X' | 'O'
+      })
+      return true
+    } else {
+      return false
     }
   }
 
+  // c1,c2 and c3 are the cells of the winning line, could be used for api call
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const singleGameWinner = async ({ c1, c2, c3, component }: SingleGameWinnerProps) => {
     // doing animation
     if (component === 'X') {
       setWinner('X wins!!!')
-      setScores((prev) => {
-        return { ...prev, userScore: prev.userScore + 1 }
-      })
     } else if (component === 'O') {
       setWinner('O wins!!!')
-      setScores((prev) => {
-        return { ...prev, opponentScore: prev.opponentScore + 1 }
-      })
     }
-    // resetGame(); // if you remove this comment line drawing animation does not appear among the little bit
+    // disable click event for 1 second
+    matchArea.setAttribute('style', 'pointer-events: none')
+    // to reset the game after 1 seconds
+    setTimeout(() => { // change the setTimeout to animation finished callback from match-area
+      matchArea.removeAttribute('style')
+      resetGame()
+      if (component === 'X') {
+        setScores((prev) => {
+          return { ...prev, userScore: prev.userScore + 1 }
+        })
+      } else if (component === 'O') {
+        setScores((prev) => {
+          return { ...prev, opponentScore: prev.opponentScore + 1 }
+        })
+      }
+      setWinner(null)
+      matchArea.classList.remove('match-area')// to remove the shake effect
+    }, 1000)
     setLap((prev) => prev + 1)
   }
 

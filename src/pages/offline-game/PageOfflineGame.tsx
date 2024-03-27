@@ -28,20 +28,22 @@ const PageOfflineGame: React.FunctionComponent = () => {
 
   React.useEffect(() => {
     if (lap > bestOf) {
-      if (scores.userScore > scores.opponentScore) {
-        alert('You Wins') // alertContext to be setted as "USER"
-      } else if (scores.userScore < scores.opponentScore) {
-        alert('Opponent Wins') // alertContext to be setted as "opponent"
-      } else {
-        alert('Game ended in Draw') // alertContext to be setted as "DRAW"
-      }
-      setScores({
-        userScore: 0,
-        opponentScore: 0
-      })
-      setLap(1)
+      setTimeout(() => { // change the setTimeout to animation finished callback from match-area
+        if (scores.userScore > scores.opponentScore) {
+          alert('You Wins') // alertContext to be setted as "USER"
+        } else if (scores.userScore < scores.opponentScore) {
+          alert('Opponent Wins') // alertContext to be setted as "opponent"
+        } else {
+          alert('Game ended in Draw') // alertContext to be setted as "DRAW"
+        }
+        setScores({
+          userScore: 0,
+          opponentScore: 0
+        })
+        setLap(1)
+      }, 1000)
     }
-  }, [lap])
+  }, [scores])
 
   return (
     <div className="flex flex-col h-screen">
@@ -49,11 +51,11 @@ const PageOfflineGame: React.FunctionComponent = () => {
       <div className="flex flex-col flex-1 justify-center items-center">
         <MatchHeaderArea userProfile={userProfile} opponentProfile={opponentProfile} scores={scores} bestOf={bestOf} />
         <TurnIndicator turn={turn} opponent={false} />
-        <TurnIndicator turn={turn} opponent={true} />
+        <TurnIndicator turn={!turn} opponent={true} />
         <OfflineMatchArea turn={turn} setTurn={setTurn} setScores={setScores} setWinner={setPreviousWinner} setLap={setLap} />
-        { previousWinner ? <WinnerComponent winner={previousWinner} /> : null }
+        {previousWinner ? <WinnerComponent winner={previousWinner} /> : <WinnerComponent winner={" "} />}
       </div>
-      <ForfeitMatchFooter handleOnClick={() => {}} />
+      <ForfeitMatchFooter handleOnClick={() => { }} />
       {/* <audio controls autoPlay loop>
         <source src='sword-from-sheath-6910.ogg' type='audio/ogg'/>
       </audio> */}
